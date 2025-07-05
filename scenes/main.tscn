@@ -657,7 +657,7 @@ vertical_alignment = 1
 [node name="Label" type="Label" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "BatPU2 Virtual Machine by AdoHTQ"
+text = "BatPU Emulator by AdoHTQ and SDFTDusername"
 horizontal_alignment = 1
 
 [node name="ControlColumn" type="MarginContainer" parent="NewUI/HBoxContainer"]
