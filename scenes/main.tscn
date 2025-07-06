@@ -1,389 +1,20 @@
-[gd_scene load_steps=20 format=3 uid="uid://d0pmv6pxy3ax2"]
+[gd_scene load_steps=3 format=3 uid="uid://d0pmv6pxy3ax2"]
 
-[ext_resource type="StyleBox" uid="uid://bqg5poxt6rr84" path="res://UI/Dock.tres" id="1_r150o"]
+[ext_resource type="Texture2D" uid="uid://dk44tobqhpg87" path="res://Textures/ScreenPlaceholder.png" id="1_r150o"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bu3mg"]
-bg_color = Color(0.145098, 0.168627, 0.203922, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_idj7w"]
+font_size = 12
+font_color = Color(1, 1, 1, 0.309804)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_653oh"]
-bg_color = Color(0.211765, 0.239216, 0.290196, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lqll6"]
-bg_color = Color(0.117647, 0.12549, 0.141176, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ok5b4"]
-bg_color = Color(0.117647, 0.12549, 0.141176, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yhtfp"]
-bg_color = Color(0.117647, 0.12549, 0.141176, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6u5y"]
-bg_color = Color(0.117647, 0.12549, 0.141176, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0eq0j"]
-bg_color = Color(0.117647, 0.12549, 0.141176, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7yqm"]
-bg_color = Color(0.117647, 0.12549, 0.141176, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_re8wq"]
-bg_color = Color(0.117647, 0.12549, 0.141176, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vscf"]
-bg_color = Color(0.117647, 0.12549, 0.141176, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="Theme" id="Theme_vfx06"]
-LineEdit/font_sizes/font_size = 31
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bq6u3"]
-bg_color = Color(0.6, 0.6, 0.6, 0.423529)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ioq6h"]
-bg_color = Color(0.105882, 0.113725, 0.121569, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkgbl"]
-bg_color = Color(0.105882, 0.113725, 0.121569, 1)
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c108o"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l6xlx"]
-
-[sub_resource type="CodeHighlighter" id="CodeHighlighter_2mnaf"]
-number_color = Color(1, 0.360784, 0.32549, 1)
-symbol_color = Color(1, 1, 1, 1)
-function_color = Color(1, 1, 1, 1)
-member_variable_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1y22k"]
-bg_color = Color(0.145098, 0.168627, 0.203922, 0.890196)
-
-[node name="Main" type="Node2D"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(960, 540)
-
-[node name="Control" type="Control" parent="."]
-visible = false
+[node name="Main" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ControPanelBG" type="ColorRect" parent="Control"]
-layout_mode = 2
-offset_right = 800.0
-offset_bottom = 600.0
-size_flags_vertical = 3
-color = Color(0.211765, 0.239216, 0.290196, 1)
-
-[node name="ControlPanelMargins" type="MarginContainer" parent="Control"]
-layout_mode = 0
-offset_left = 512.0
-offset_right = 800.0
-offset_bottom = 512.0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 0
-
-[node name="ControlPanelList" type="VBoxContainer" parent="Control/ControlPanelMargins"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="StatusLabel" type="Label" parent="Control/ControlPanelMargins/ControlPanelList"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_bu3mg")
-horizontal_alignment = 1
-
-[node name="StartStopButton" type="Button" parent="Control/ControlPanelMargins/ControlPanelList"]
-layout_mode = 2
-text = "-Start-"
-
-[node name="HButtonContainer" type="HBoxContainer" parent="Control/ControlPanelMargins/ControlPanelList"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="StepButton" type="Button" parent="Control/ControlPanelMargins/ControlPanelList/HButtonContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "<Step>"
-
-[node name="ResetButton" type="Button" parent="Control/ControlPanelMargins/ControlPanelList/HButtonContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "|Reset|"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/ControlPanelMargins/ControlPanelList"]
-custom_minimum_size = Vector2(0, 26.045)
-layout_mode = 2
-
-[node name="InstructionsPerTickSlider" type="HSlider" parent="Control/ControlPanelMargins/ControlPanelList/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-min_value = 1.0
-max_value = 10000.0
-value = 100.0
-
-[node name="SpinBox" type="SpinBox" parent="Control/ControlPanelMargins/ControlPanelList/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.4
-max_value = 10000.0
-value = 100.0
-rounded = true
-custom_arrow_step = 1.0
-
-[node name="FlagsPanel" type="PanelContainer" parent="Control/ControlPanelMargins/ControlPanelList"]
-layout_mode = 2
-
-[node name="FlagsMargin" type="MarginContainer" parent="Control/ControlPanelMargins/ControlPanelList/FlagsPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="FlagsLabel" type="Label" parent="Control/ControlPanelMargins/ControlPanelList/FlagsPanel/FlagsMargin"]
-layout_mode = 2
-text = "Flags | C:0 Z:0"
-horizontal_alignment = 1
-
-[node name="RegisterPanel" type="PanelContainer" parent="Control/ControlPanelMargins/ControlPanelList"]
-layout_mode = 2
-
-[node name="RegisterMargin" type="MarginContainer" parent="Control/ControlPanelMargins/ControlPanelList/RegisterPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="RegisterList" type="VBoxContainer" parent="Control/ControlPanelMargins/ControlPanelList/RegisterPanel/RegisterMargin"]
-layout_mode = 2
-
-[node name="RegisterLabel" type="Label" parent="Control/ControlPanelMargins/ControlPanelList/RegisterPanel/RegisterMargin/RegisterList"]
-layout_mode = 2
-text = "Registers"
-horizontal_alignment = 1
-
-[node name="RegisterText" type="Label" parent="Control/ControlPanelMargins/ControlPanelList/RegisterPanel/RegisterMargin/RegisterList"]
-custom_minimum_size = Vector2(1, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="MemoryPanel" type="PanelContainer" parent="Control/ControlPanelMargins/ControlPanelList"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="MemoryMargin" type="MarginContainer" parent="Control/ControlPanelMargins/ControlPanelList/MemoryPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="MemoryList" type="VBoxContainer" parent="Control/ControlPanelMargins/ControlPanelList/MemoryPanel/MemoryMargin"]
-layout_mode = 2
-
-[node name="MemoryLabel" type="Label" parent="Control/ControlPanelMargins/ControlPanelList/MemoryPanel/MemoryMargin/MemoryList"]
-layout_mode = 2
-text = "Memory"
-horizontal_alignment = 1
-
-[node name="MemoryScroll" type="ScrollContainer" parent="Control/ControlPanelMargins/ControlPanelList/MemoryPanel/MemoryMargin/MemoryList"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="MemoryText" type="Label" parent="Control/ControlPanelMargins/ControlPanelList/MemoryPanel/MemoryMargin/MemoryList/MemoryScroll"]
-custom_minimum_size = Vector2(1, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="PortsPanel" type="PanelContainer" parent="Control/ControlPanelMargins/ControlPanelList"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="PortsMargin" type="MarginContainer" parent="Control/ControlPanelMargins/ControlPanelList/PortsPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 0
-
-[node name="PortsList" type="VBoxContainer" parent="Control/ControlPanelMargins/ControlPanelList/PortsPanel/PortsMargin"]
-layout_mode = 2
-
-[node name="PortsLabel" type="Label" parent="Control/ControlPanelMargins/ControlPanelList/PortsPanel/PortsMargin/PortsList"]
-layout_mode = 2
-text = "Ports"
-horizontal_alignment = 1
-
-[node name="PortsScroll" type="ScrollContainer" parent="Control/ControlPanelMargins/ControlPanelList/PortsPanel/PortsMargin/PortsList"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="PortsText" type="Label" parent="Control/ControlPanelMargins/ControlPanelList/PortsPanel/PortsMargin/PortsList/PortsScroll"]
-custom_minimum_size = Vector2(1, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="DisplayPanelMargins" type="MarginContainer" parent="Control"]
-layout_mode = 0
-offset_top = 512.0
-offset_right = 800.0
-offset_bottom = 600.0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/DisplayPanelMargins"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="DisplayPanelContainer" type="VBoxContainer" parent="Control/DisplayPanelMargins/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/separation = 10
-
-[node name="DisplayTextureLabel" type="Label" parent="Control/DisplayPanelMargins/HBoxContainer/DisplayPanelContainer"]
-layout_mode = 2
-text = "Display Texture: "
-
-[node name="DisplayTextureDropdown" type="OptionButton" parent="Control/DisplayPanelMargins/HBoxContainer/DisplayPanelContainer"]
-layout_mode = 2
-selected = 0
-item_count = 4
-popup/item_0/text = "1x1 Lamp"
-popup/item_0/id = 0
-popup/item_1/text = "2x2 Lamp"
-popup/item_1/id = 1
-popup/item_1/disabled = true
-popup/item_2/text = "Flat"
-popup/item_2/id = 2
-popup/item_3/text = "Godot"
-popup/item_3/id = 3
-
-[node name="OutputPanel" type="PanelContainer" parent="Control/DisplayPanelMargins/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="OutputMargin" type="MarginContainer" parent="Control/DisplayPanelMargins/HBoxContainer/OutputPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="OutputContainer" type="HBoxContainer" parent="Control/DisplayPanelMargins/HBoxContainer/OutputPanel/OutputMargin"]
-layout_mode = 2
-
-[node name="NumOutput" type="Label" parent="Control/DisplayPanelMargins/HBoxContainer/OutputPanel/OutputMargin/OutputContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-horizontal_alignment = 1
-
-[node name="OutputSeperator" type="VSeparator" parent="Control/DisplayPanelMargins/HBoxContainer/OutputPanel/OutputMargin/OutputContainer"]
-layout_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Control/DisplayPanelMargins/HBoxContainer/OutputPanel/OutputMargin/OutputContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 7.0
-
-[node name="TextOutput" type="Label" parent="Control/DisplayPanelMargins/HBoxContainer/OutputPanel/OutputMargin/OutputContainer/ScrollContainer"]
-custom_minimum_size = Vector2(1, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-autowrap_mode = 3
-
-[node name="Button" type="Button" parent="Control/DisplayPanelMargins/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.0
-text = "Assembly
-Mode"
-
-[node name="ScreenPlaceholder" type="ColorRect" parent="Control"]
-layout_mode = 0
-offset_right = 512.0
-offset_bottom = 512.0
-color = Color(0.145098, 0.168627, 0.203922, 1)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/ScreenPlaceholder"]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 146.0
-offset_right = 478.0
-offset_bottom = 512.0
-theme_override_font_sizes/normal_font_size = 46
-bbcode_enabled = true
-text = "[center][wave]Drag and drop assembled program to load"
-
-[node name="Display" type="GridContainer" parent="Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
-columns = 32
-
-[node name="NewUI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-
-[node name="ColorRect" type="ColorRect" parent="NewUI"]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -392,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.113725, 0.133333, 0.160784, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NewUI"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -400,363 +31,292 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DisplayColumn" type="MarginContainer" parent="NewUI/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 10
+theme_override_constants/separation = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NewUI/HBoxContainer/DisplayColumn"]
+[node name="DisplayColumn" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/DisplayColumn"]
 layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.0
-theme_override_constants/separation = 10
 
-[node name="TextPanel" type="PanelContainer" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.77
-theme_override_styles/panel = ExtResource("1_r150o")
+size_flags_stretch_ratio = 2.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer/TextPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer/TextPanel"]
 layout_mode = 2
 
-[node name="TextLabel" type="Label" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer/TextPanel/ScrollContainer"]
+[node name="TextLabel" type="Label" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer/TextPanel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 51
+theme_override_font_sizes/font_size = 32
 text = "__________"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 1
 
-[node name="NumPanel" type="PanelContainer" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer"]
+[node name="NumPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = ExtResource("1_r150o")
 
-[node name="NumLabel" type="Label" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer/NumPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer/NumPanel"]
+layout_mode = 2
+
+[node name="NumLabel" type="Label" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer/NumPanel/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_font_sizes/font_size = 56
-text = "000"
+theme_override_font_sizes/font_size = 32
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DisplayPlaceholder" type="PanelContainer" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer"]
+[node name="Display" type="PanelContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = ExtResource("1_r150o")
 
-[node name="MarginContainer" type="MarginContainer" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/DisplayPlaceholder"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Display"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/DisplayPlaceholder/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Display/MarginContainer"]
+texture_filter = 1
 layout_mode = 2
-theme_override_constants/separation = 10
+texture = ExtResource("1_r150o")
+stretch_mode = 5
 
-[node name="Display" type="GridContainer" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/DisplayPlaceholder/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(512, 512)
+[node name="Controller" type="PanelContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer"]
+custom_minimum_size = Vector2(0, 155)
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
-columns = 32
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/DisplayPlaceholder/MarginContainer/VBoxContainer"]
+[node name="Control" type="MarginContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller"]
 layout_mode = 2
-theme_override_constants/separation = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/DisplayPlaceholder/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Control" type="HBoxContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="Directions" type="Control" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -60.0
+offset_right = 120.0
+offset_bottom = 60.0
+grow_vertical = 2
+
+[node name="Up" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control/Directions"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+text = "↑"
+
+[node name="Down" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control/Directions"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "↓"
+
+[node name="Left" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control/Directions"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+text = "←"
+
+[node name="Right" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control/Directions"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "→"
+
+[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_653oh")
 
-[node name="MarginContainer" type="MarginContainer" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/DisplayPlaceholder/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="Menu" type="Control" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -66.5
+offset_right = 66.5
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Select" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control2/Menu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+text = "Select"
+
+[node name="Start" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control2/Menu"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Start
+"
+
+[node name="Control3" type="Control" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control"]
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/DisplayPlaceholder/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
+[node name="Actions" type="Control" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control3"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/DisplayPlaceholder/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Display Texture:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/DisplayPlaceholder/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "1x1 Lamp"
-
-[node name="Button2" type="Button" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/DisplayPlaceholder/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "2x2 Lamp"
-
-[node name="Button3" type="Button" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/DisplayPlaceholder/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Flat Lamp"
-
-[node name="Button4" type="Button" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/DisplayPlaceholder/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Godot"
-
-[node name="PanelContainer" type="Panel" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = ExtResource("1_r150o")
-
-[node name="DownIndicator" type="Panel" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer"]
-layout_mode = 2
-offset_left = 66.0
-offset_top = 166.0
-offset_right = 116.0
-offset_bottom = 216.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_lqll6")
-
-[node name="Label" type="Label" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer/DownIndicator"]
-layout_mode = 0
-offset_right = 50.0
-offset_bottom = 50.0
-text = "S"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LeftIndicator" type="Panel" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 116.0
-offset_right = 66.0
-offset_bottom = 166.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ok5b4")
-
-[node name="Label" type="Label" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer/LeftIndicator"]
-layout_mode = 0
-offset_right = 50.0
-offset_bottom = 50.0
+[node name="Left" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control3/Actions"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
 text = "A"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="UpIndicator" type="Panel" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer"]
-layout_mode = 0
-offset_left = 66.0
-offset_top = 66.0
-offset_right = 116.0
-offset_bottom = 116.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yhtfp")
+[node name="Right" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control3/Actions"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "B"
 
-[node name="Label" type="Label" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer/UpIndicator"]
-layout_mode = 0
-offset_right = 50.0
-offset_bottom = 50.0
-text = "W"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RightIndicator" type="Panel" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer"]
-layout_mode = 0
-offset_left = 116.0
-offset_top = 116.0
-offset_right = 166.0
-offset_bottom = 166.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_x6u5y")
-
-[node name="Label" type="Label" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer/RightIndicator"]
-layout_mode = 0
-offset_right = 50.0
-offset_bottom = 50.0
-text = "D"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AIndicator" type="Panel" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer"]
-layout_mode = 0
-offset_left = 366.0
-offset_top = 116.0
-offset_right = 416.0
-offset_bottom = 166.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_0eq0j")
-
-[node name="Label" type="Label" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer/AIndicator"]
-layout_mode = 0
-offset_right = 50.0
-offset_bottom = 50.0
-text = "J"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BIndicator" type="Panel" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer"]
-layout_mode = 0
-offset_left = 467.0
-offset_top = 116.0
-offset_right = 517.0
-offset_bottom = 166.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_f7yqm")
-
-[node name="Label" type="Label" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer/BIndicator"]
-layout_mode = 0
-offset_right = 50.0
-offset_bottom = 50.0
-text = "K"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SelectIndicator" type="Panel" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer"]
-layout_mode = 0
-offset_left = 187.0
-offset_top = 28.0
-offset_right = 242.0
-offset_bottom = 54.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_re8wq")
-
-[node name="Label" type="Label" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer/SelectIndicator"]
-layout_mode = 0
-offset_right = 55.0
-offset_bottom = 26.0
-text = "T"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StartIndicator" type="Panel" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer"]
-layout_mode = 0
-offset_left = 288.0
-offset_top = 28.0
-offset_right = 343.0
-offset_bottom = 54.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7vscf")
-
-[node name="Label" type="Label" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/PanelContainer/StartIndicator"]
-layout_mode = 0
-offset_right = 55.0
-offset_bottom = 26.0
-text = "Y"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label" type="Label" parent="NewUI/HBoxContainer/DisplayColumn/VBoxContainer"]
+[node name="Credits" type="Label" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "BatPU Emulator by AdoHTQ and SDFTDusername"
+text = "BatPU Emulator by AdoHTQ
+Fork by SDFTDusername"
+label_settings = SubResource("LabelSettings_idj7w")
 horizontal_alignment = 1
 
-[node name="ControlColumn" type="MarginContainer" parent="NewUI/HBoxContainer"]
+[node name="ControlColumn" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.7
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NewUI/HBoxContainer/ControlColumn"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn"]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 10
 
-[node name="PanelContainer2" type="PanelContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer"]
-visible = false
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("1_r150o")
 
-[node name="MarginContainer" type="MarginContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="StatusLabel" type="Label" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Placeholder Status"
+
+[node name="PCLabel" type="Label" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Program Counter: 0"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("1_r150o")
 
-[node name="MarginContainer" type="MarginContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer"]
+[node name="StartButton" type="Button" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="PCLabel" type="Label" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "   Program Counter: 0"
-
-[node name="StartButton" type="Button" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
+size_flags_horizontal = 3
 toggle_mode = true
-text = "-Start-"
+text = "Start"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer"]
-layout_mode = 2
-
-[node name="StepButton" type="Button" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/HBoxContainer"]
+[node name="ResetButton" type="Button" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 36
-text = "<Step>"
+text = "Reset"
 
-[node name="ResetButton" type="Button" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/HBoxContainer"]
+[node name="StepButton" type="Button" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 36
-text = "|Reset|"
+text = "Step"
 
-[node name="PanelContainer7" type="PanelContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer"]
+[node name="PanelContainer7" type="PanelContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("1_r150o")
 
-[node name="MarginContainer" type="MarginContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
 
-[node name="ExecutionSpeedLabel" type="Label" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer"]
+[node name="ExecutionSpeedLabel" type="Label" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Execution Rate:
-(Instructions Per Second)"
+text = "Instructions per second:"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 26.045)
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="InstructionsPerTickSlider" type="HSlider" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(0, 50)
+[node name="InstructionsPerTickSlider" type="HSlider" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -765,292 +325,97 @@ max_value = 100000.0
 value = 100.0
 exp_edit = true
 
-[node name="SpinBox" type="SpinBox" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.4
-theme = SubResource("Theme_vfx06")
 max_value = 100000.0
 value = 100.0
 rounded = true
-custom_arrow_step = 1.0
 
-[node name="PanelContainer3" type="PanelContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("1_r150o")
-
-[node name="MarginContainer" type="MarginContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="FlagsLabel" type="RichTextLabel" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 25
-bbcode_enabled = true
-text = "[center]Flags
-Carry: False | Zero: False"
-fit_content = true
-
-[node name="PanelContainer4" type="PanelContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("1_r150o")
-
-[node name="MarginContainer" type="MarginContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer4"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="RegistersLabel" type="RichTextLabel" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer4/MarginContainer"]
-custom_minimum_size = Vector2(0, 170)
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 25
-bbcode_enabled = true
-fit_content = true
-
-[node name="PanelContainer5" type="PanelContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = ExtResource("1_r150o")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer5"]
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer5/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer5/ScrollContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3"]
 layout_mode = 2
 
-[node name="RamLabel" type="RichTextLabel" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer5/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 25
-bbcode_enabled = true
-fit_content = true
-
-[node name="RamLabel2" type="RichTextLabel" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer5/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/default_color = Color(0.597176, 0.597176, 0.597176, 1)
-theme_override_font_sizes/normal_font_size = 25
-bbcode_enabled = true
-text = "[center]240-255 Reserved for I/O Ports"
-fit_content = true
-
-[node name="PanelContainer6" type="PanelContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("1_r150o")
-
-[node name="MarginContainer" type="MarginContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer"]
 layout_mode = 2
 
-[node name="SettingsTitle" type="Label" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Settings"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 10
 
-[node name="HexSetting" type="CheckBox" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6/MarginContainer/VBoxContainer/HBoxContainer"]
-visible = false
+[node name="ZeroLabel" type="Label" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Hex"
+text = "Zero:"
+horizontal_alignment = 1
 
-[node name="CameraSetting" type="CheckBox" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ZeroValue" type="Label" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_colors/font_color = Color(1, 1, 1, 0.309804)
+text = "False"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="CarryLabel" type="Label" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Carry:"
+horizontal_alignment = 1
+
+[node name="CarryValue" type="Label" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.309804)
+text = "False"
+horizontal_alignment = 1
+
+[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer4"]
+layout_mode = 2
+
+[node name="PanelContainer5" type="PanelContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer5"]
+layout_mode = 2
+
+[node name="PanelContainer6" type="PanelContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6/MarginContainer"]
+layout_mode = 2
+
+[node name="CameraSetting" type="CheckBox" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6/MarginContainer/HBoxContainer"]
+layout_mode = 2
 button_pressed = true
 text = "Follow Assembly"
 
-[node name="FullscreenSetting" type="CheckBox" parent="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="FullscreenSetting" type="CheckBox" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
 text = "Fullscreen"
 
-[node name="AssemblyColumn" type="MarginContainer" parent="NewUI/HBoxContainer"]
+[node name="AssemblyColumn" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="NewUI/HBoxContainer/AssemblyColumn"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("1_r150o")
-
-[node name="Label" type="Label" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 46
-text = "Drag and drop assembly
-program (.as)"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Panel" type="Panel" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer"]
-visible = false
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bq6u3")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="PanelContainer" type="PanelContainer" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ioq6h")
-
-[node name="MarginContainer" type="MarginContainer" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/AssemblyColumn"]
 layout_mode = 2
 
-[node name="EditingLabel" type="Label" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/AssemblyColumn/PanelContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.412152, 0.412152, 0.412152, 1)
-theme_override_font_sizes/font_size = 20
-horizontal_alignment = 1
 
-[node name="EditingLabel2" type="Label" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="CodeEdit" type="CodeEdit" parent="MarginContainer/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.412152, 0.412152, 0.412152, 1)
-theme_override_font_sizes/font_size = 20
-text = "Save the file to reassemble (Ctrl+S on Windows)"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 3
-
-[node name="Label" type="TextEdit" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.05
-theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_vkgbl")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_c108o")
-editable = false
-scroll_fit_content_height = true
-
-[node name="CodeEdit" type="CodeEdit" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_readonly_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_vkgbl")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_l6xlx")
-theme_override_colors/line_number_color = Color(0.529412, 0.529412, 0.529412, 1)
-theme_override_colors/executing_line_color = Color(1, 1, 1, 1)
-text = "
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          Drag in assembly file (as)"
-editable = false
-caret_type = 1
-syntax_highlighter = SubResource("CodeHighlighter_2mnaf")
 highlight_all_occurrences = true
-gutters_draw_executing_lines = true
-
-[node name="ErrorDisplay" type="MarginContainer" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="PanelContainer" type="PanelContainer" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/ErrorDisplay"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1y22k")
-
-[node name="MarginContainer" type="MarginContainer" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/ErrorDisplay/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/ErrorDisplay/PanelContainer/MarginContainer"]
-clip_contents = true
-layout_mode = 2
-
-[node name="Label" type="Label" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/ErrorDisplay/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(1, 1)
-layout_mode = 2
-size_flags_vertical = 3
-autowrap_mode = 3
-
-[node name="Button" type="Button" parent="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/ErrorDisplay/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 30
-text = "Hide"
-
-[connection signal="item_selected" from="Control/DisplayPanelMargins/HBoxContainer/DisplayPanelContainer/DisplayTextureDropdown" to="Control/Display" method="UpdateSprites"]
-[connection signal="pressed" from="NewUI/HBoxContainer/ControlColumn/VBoxContainer/HBoxContainer/ResetButton" to="NewUI/HBoxContainer/DisplayColumn/VBoxContainer/DisplayPlaceholder/MarginContainer/VBoxContainer/Display" method="DisplayInit"]
-[connection signal="value_changed" from="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/SpinBox" to="." method="SetSpeed"]
-[connection signal="toggled" from="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6/MarginContainer/VBoxContainer/HBoxContainer/FullscreenSetting" to="NewUI/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6/MarginContainer/VBoxContainer/HBoxContainer/FullscreenSetting" method="Toggle"]
-[connection signal="gui_input" from="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CodeEdit" to="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CodeEdit" method="_on_gui_input"]
-[connection signal="pressed" from="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/ErrorDisplay/PanelContainer/MarginContainer/VBoxContainer/Button" to="NewUI/HBoxContainer/AssemblyColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CodeEdit" method="HideError"]
+draw_tabs = true
+draw_spaces = true
+gutters_draw_line_numbers = true
+delimiter_strings = Array[String]([])
