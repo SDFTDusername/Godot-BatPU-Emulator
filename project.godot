@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="BatPU Emulator"
+config/version="0.0.1"
 run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
