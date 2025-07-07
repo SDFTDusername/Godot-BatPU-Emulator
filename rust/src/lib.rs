@@ -1,3 +1,5 @@
+mod machine;
+
 use godot::prelude::*;
 
 struct EmulatorExtension;

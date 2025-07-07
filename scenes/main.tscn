@@ -419,3 +419,5 @@ draw_tabs = true
 draw_spaces = true
 gutters_draw_line_numbers = true
 delimiter_strings = Array[String]([])
+
+[node name="MachineNode" type="MachineNode" parent="."]
