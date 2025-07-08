@@ -87,6 +87,21 @@ impl MachineNode {
     }
 
     #[func]
+    fn get_program_counter(&self) -> u32 {
+        self.machine.program_counter()
+    }
+
+    #[func]
+    fn get_zero_flag(&self) -> bool {
+        self.machine.zero_flag()
+    }
+
+    #[func]
+    fn get_carry_flag(&self) -> bool {
+        self.machine.carry_flag()
+    }
+
+    #[func]
     fn reset(&mut self) {
         self.machine.reset();
         self.update_screen(false);
@@ -126,11 +141,6 @@ impl MachineNode {
         self.update_screen(false);
 
         self.signals().ticked().emit();
-    }
-    
-    #[func]
-    fn get_program_counter(&self) -> u32 {
-        self.machine.program_counter()
     }
 
     #[func]
