@@ -554,9 +554,10 @@ horizontal_alignment = 1
 [node name="CodeEdit" type="CodeEdit" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+minimap_draw = true
+caret_blink = true
 highlight_all_occurrences = true
-draw_tabs = true
-draw_spaces = true
+highlight_current_line = true
 gutters_draw_line_numbers = true
 delimiter_strings = Array[String]([])
 script = ExtResource("4_rgh2o")
