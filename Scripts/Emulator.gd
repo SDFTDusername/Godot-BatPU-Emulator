@@ -16,6 +16,17 @@ extends Control
 
 var reset := true
 
+var start_pressed := false
+var select_pressed := false
+
+var a_pressed := false
+var b_pressed := false
+
+var up_pressed := false
+var right_pressed := false
+var down_pressed := false
+var left_pressed := false
+
 func _ready() -> void:
 	update_start_button()
 	update_all()
@@ -27,17 +38,44 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	update_controller()
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.is_action_pressed("start"): start_pressed = true
+		if event.is_action_released("start"): start_pressed = false
+		
+		if event.is_action_pressed("select"): select_pressed = true
+		if event.is_action_released("select"): select_pressed = false
+		
+		if event.is_action_pressed("a"): a_pressed = true
+		if event.is_action_released("a"): a_pressed = false
+		
+		if event.is_action_pressed("b"): b_pressed = true
+		if event.is_action_released("b"): b_pressed = false
+		
+		if event.is_action_pressed("up"): up_pressed = true
+		if event.is_action_released("up"): up_pressed = false
+		
+		if event.is_action_pressed("right"): right_pressed = true
+		if event.is_action_released("right"): right_pressed = false
+		
+		if event.is_action_pressed("down"): down_pressed = true
+		if event.is_action_released("down"): down_pressed = false
+		
+		if event.is_action_pressed("left"): left_pressed = true
+		if event.is_action_released("left"): left_pressed = false
+		
+
 func update_controller() -> void:
-	machine_node.set_controller_value(7, Input.is_action_pressed("start"))
-	machine_node.set_controller_value(6, Input.is_action_pressed("select"))
+	machine_node.set_controller_value(7, start_pressed)
+	machine_node.set_controller_value(6, select_pressed)
 	
-	machine_node.set_controller_value(5, Input.is_action_pressed("a"))
-	machine_node.set_controller_value(4, Input.is_action_pressed("b"))
+	machine_node.set_controller_value(5, a_pressed)
+	machine_node.set_controller_value(4, b_pressed)
 	
-	machine_node.set_controller_value(3, Input.is_action_pressed("up"))
-	machine_node.set_controller_value(2, Input.is_action_pressed("right"))
-	machine_node.set_controller_value(1, Input.is_action_pressed("down"))
-	machine_node.set_controller_value(0, Input.is_action_pressed("left"))
+	machine_node.set_controller_value(3, up_pressed)
+	machine_node.set_controller_value(2, right_pressed)
+	machine_node.set_controller_value(1, down_pressed)
+	machine_node.set_controller_value(0, left_pressed)
 
 func update_all() -> void:
 	update_program_counter()
