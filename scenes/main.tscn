@@ -1,13 +1,47 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0pmv6pxy3ax2"]
+[gd_scene load_steps=15 format=3 uid="uid://d0pmv6pxy3ax2"]
 
 [ext_resource type="Script" uid="uid://dx0rlg3ee2lgh" path="res://Scripts/Emulator.gd" id="1_idj7w"]
 [ext_resource type="Texture2D" uid="uid://dk44tobqhpg87" path="res://Textures/ScreenPlaceholder.png" id="1_r150o"]
 [ext_resource type="Script" uid="uid://dtcdk3vdr3lip" path="res://Scripts/ControllerButton.gd" id="3_kln2b"]
+[ext_resource type="Script" uid="uid://c7n3cuix402pt" path="res://Scripts/AssemblyColumn.gd" id="4_pbw6q"]
 [ext_resource type="Script" uid="uid://dtd41uogysxfp" path="res://Scripts/CodeEditor.gd" id="4_rgh2o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_idj7w"]
 font_size = 12
 font_color = Color(1, 1, 1, 0.309804)
+
+[sub_resource type="InputEventKey" id="InputEventKey_v1gob"]
+device = -1
+ctrl_pressed = true
+keycode = 78
+
+[sub_resource type="Shortcut" id="Shortcut_jw32o"]
+events = [SubResource("InputEventKey_v1gob")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_50glp"]
+device = -1
+ctrl_pressed = true
+keycode = 79
+
+[sub_resource type="Shortcut" id="Shortcut_vy5pj"]
+events = [SubResource("InputEventKey_50glp")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_bmxlf"]
+device = -1
+ctrl_pressed = true
+keycode = 83
+
+[sub_resource type="Shortcut" id="Shortcut_4kpch"]
+events = [SubResource("InputEventKey_bmxlf")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_pbw6q"]
+device = -1
+shift_pressed = true
+ctrl_pressed = true
+keycode = 83
+
+[sub_resource type="Shortcut" id="Shortcut_v1gob"]
+events = [SubResource("InputEventKey_pbw6q")]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -445,6 +479,7 @@ text = "Fullscreen"
 
 [node name="AssemblyColumn" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer"]
 layout_mode = 2
+script = ExtResource("4_pbw6q")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn"]
 layout_mode = 2
@@ -459,23 +494,34 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+shortcut = SubResource("Shortcut_jw32o")
 text = "New"
 
 [node name="Open" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+shortcut = SubResource("Shortcut_vy5pj")
 text = "Open"
 
 [node name="Save" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+disabled = true
+shortcut = SubResource("Shortcut_4kpch")
 text = "Save"
 
-[node name="FileLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer"]
+[node name="SaveAs" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "movement.asm"
+size_flags_horizontal = 3
+focus_mode = 0
+shortcut = SubResource("Shortcut_v1gob")
+text = "Save As"
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Untitled"
 horizontal_alignment = 1
 
 [node name="CodeEdit" type="CodeEdit" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer"]
@@ -488,6 +534,39 @@ gutters_draw_line_numbers = true
 delimiter_strings = Array[String]([])
 script = ExtResource("4_rgh2o")
 
+[node name="OpenFileDialog" type="FileDialog" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn"]
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.asm;Assembly Files;text/plain", "*.batpu;BatPU Program Files;application/octet-stream Files")
+use_native_dialog = true
+
+[node name="SaveFileDialog" type="FileDialog" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn"]
+auto_translate_mode = 1
+access = 2
+filters = PackedStringArray("*.asm;Assembly Files;text/plain")
+use_native_dialog = true
+
+[node name="NewDialog" type="ConfirmationDialog" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn"]
+title = "New File"
+initial_position = 1
+size = Vector2i(400, 100)
+ok_button_text = "Yes"
+dialog_text = "Delete changes of ?"
+dialog_autowrap = true
+cancel_button_text = "No"
+
+[node name="OpenDialog" type="ConfirmationDialog" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn"]
+auto_translate_mode = 1
+title = "Open File"
+initial_position = 1
+size = Vector2i(400, 103)
+ok_button_text = "Yes"
+dialog_text = "Delete changes of ?"
+dialog_autowrap = true
+cancel_button_text = "No"
+
 [node name="MachineNode" type="MachineNode" parent="." node_paths=PackedStringArray("screen_rect")]
 screen_rect = NodePath("../MarginContainer/HSplitContainer/DisplayColumn/Display/MarginContainer/TextureRect")
 
@@ -496,4 +575,13 @@ screen_rect = NodePath("../MarginContainer/HSplitContainer/DisplayColumn/Display
 [connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StepButton" to="." method="_on_step_button_pressed"]
 [connection signal="value_changed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/InstructionsPerTickSlider" to="." method="_on_instructions_per_tick_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/SpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer/New" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_new_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer/Open" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_open_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer/Save" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_save_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer/SaveAs" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_save_as_pressed"]
+[connection signal="text_changed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/CodeEdit" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_code_edit_text_changed"]
+[connection signal="file_selected" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/OpenFileDialog" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_open_file_dialog_file_selected"]
+[connection signal="file_selected" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/SaveFileDialog" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_save_file_dialog_file_selected"]
+[connection signal="confirmed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/NewDialog" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_new_dialog_confirmed"]
+[connection signal="confirmed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/OpenDialog" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_open_dialog_confirmed"]
 [connection signal="ticked" from="MachineNode" to="." method="_on_machine_node_ticked"]

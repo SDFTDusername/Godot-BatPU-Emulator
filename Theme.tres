@@ -1,8 +1,28 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://fsuleckmramo"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://fsuleckmramo"]
 
 [ext_resource type="StyleBox" uid="uid://bqayi4es415hg" path="res://PanelTheme.tres" id="1_yd3fu"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4jqe"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.176471, 0.203922, 0.243137, 1)
+corner_detail = 1
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yd3fu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1aya"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_yd3fu"]
 color = Color(0.216821, 0.247671, 0.290864, 1)
@@ -28,9 +48,27 @@ color = Color(0.216821, 0.247671, 0.290864, 1)
 thickness = 2
 vertical = true
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6xh3"]
+content_margin_left = 10.0
+content_margin_top = 28.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(0.177353, 0.204021, 0.241357, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+expand_margin_left = 8.0
+expand_margin_top = 32.0
+expand_margin_right = 8.0
+expand_margin_bottom = 6.0
+
 [resource]
+AcceptDialog/styles/panel = SubResource("StyleBoxFlat_j4jqe")
 BoxContainer/constants/separation = 5
 CodeEdit/styles/focus = SubResource("StyleBoxEmpty_yd3fu")
+CodeEdit/styles/normal = SubResource("StyleBoxFlat_k1aya")
 HSeparator/styles/separator = SubResource("StyleBoxLine_yd3fu")
 MarginContainer/constants/margin_bottom = 5
 MarginContainer/constants/margin_left = 5
@@ -41,3 +79,4 @@ TabContainer/styles/panel = ExtResource("1_yd3fu")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_yd3fu")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_23v3e")
 VSeparator/styles/separator = SubResource("StyleBoxLine_23v3e")
+Window/styles/embedded_border = SubResource("StyleBoxFlat_c6xh3")
