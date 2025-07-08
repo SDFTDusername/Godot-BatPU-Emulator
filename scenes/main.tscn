@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://d0pmv6pxy3ax2"]
+[gd_scene load_steps=22 format=3 uid="uid://d0pmv6pxy3ax2"]
 
 [ext_resource type="Script" uid="uid://dx0rlg3ee2lgh" path="res://Scripts/Emulator.gd" id="1_idj7w"]
 [ext_resource type="Texture2D" uid="uid://dk44tobqhpg87" path="res://Textures/ScreenPlaceholder.png" id="1_r150o"]
 [ext_resource type="Script" uid="uid://dtcdk3vdr3lip" path="res://Scripts/ControllerButton.gd" id="3_kln2b"]
 [ext_resource type="Script" uid="uid://c7n3cuix402pt" path="res://Scripts/AssemblyColumn.gd" id="4_pbw6q"]
-[ext_resource type="Script" uid="uid://dtd41uogysxfp" path="res://Scripts/CodeEditor.gd" id="4_rgh2o"]
+[ext_resource type="Script" uid="uid://dtd41uogysxfp" path="res://Scripts/Unfocus.gd" id="4_rgh2o"]
+[ext_resource type="Script" uid="uid://cummt27v632a6" path="res://Scripts/UnfocusSpinBox.gd" id="4_v1gob"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_idj7w"]
 font_size = 12
@@ -430,6 +431,7 @@ min_value = 1.0
 max_value = 100000.0
 value = 100.0
 rounded = true
+script = ExtResource("4_v1gob")
 
 [node name="FlagsContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
 layout_mode = 2
