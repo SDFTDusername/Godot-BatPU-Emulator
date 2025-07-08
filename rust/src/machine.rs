@@ -156,7 +156,7 @@ impl MachineNode {
 
             for x in 0..width {
                 for y in 0..height {
-                    let (byte, bit) = screen.get_index(x, y);
+                    let (byte, bit) = screen.get_index(x, height - y - 1);
 
                     let pixel = (image[byte] >> bit) == 1;
                     let color = if pixel {
