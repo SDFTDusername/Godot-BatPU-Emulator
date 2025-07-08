@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0pmv6pxy3ax2"]
+[gd_scene load_steps=21 format=3 uid="uid://d0pmv6pxy3ax2"]
 
 [ext_resource type="Script" uid="uid://dx0rlg3ee2lgh" path="res://Scripts/Emulator.gd" id="1_idj7w"]
 [ext_resource type="Texture2D" uid="uid://dk44tobqhpg87" path="res://Textures/ScreenPlaceholder.png" id="1_r150o"]
@@ -9,6 +9,30 @@
 [sub_resource type="LabelSettings" id="LabelSettings_idj7w"]
 font_size = 12
 font_color = Color(1, 1, 1, 0.309804)
+
+[sub_resource type="InputEventKey" id="InputEventKey_jw32o"]
+device = -1
+keycode = 83
+unicode = 115
+
+[sub_resource type="Shortcut" id="Shortcut_50glp"]
+events = [SubResource("InputEventKey_jw32o")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_vy5pj"]
+device = -1
+keycode = 82
+unicode = 114
+
+[sub_resource type="Shortcut" id="Shortcut_bmxlf"]
+events = [SubResource("InputEventKey_vy5pj")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_4kpch"]
+device = -1
+keycode = 84
+unicode = 116
+
+[sub_resource type="Shortcut" id="Shortcut_grg3l"]
+events = [SubResource("InputEventKey_4kpch")]
 
 [sub_resource type="InputEventKey" id="InputEventKey_v1gob"]
 device = -1
@@ -355,18 +379,21 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+shortcut = SubResource("Shortcut_50glp")
 text = "Start"
 
 [node name="ResetButton" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+shortcut = SubResource("Shortcut_bmxlf")
 text = "Reset"
 
 [node name="StepButton" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+shortcut = SubResource("Shortcut_grg3l")
 text = "Step"
 
 [node name="PanelContainer7" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
