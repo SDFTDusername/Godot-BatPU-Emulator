@@ -2,17 +2,23 @@ extends Control
 
 @onready var machine_node: MachineNode = $MachineNode
 
-@onready var start_button: Button = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StartButton
-@onready var reset_button: Button = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ResetButton
-@onready var step_button: Button = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StepButton
+@onready var start_button: Button = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer/StartButton
+@onready var reset_button: Button = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer/ResetButton
+@onready var step_button: Button = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer/StepButton
 
-@onready var pc_value: Label = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/PCValue
+@onready var pc_value: Label = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer2/PCValue
 
-@onready var instructions_per_tick_slider: HSlider = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/InstructionsPerTickSlider
-@onready var spin_box: SpinBox = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/SpinBox
+@onready var instructions_per_tick_slider: HSlider = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/IPSContainer/MarginContainer/VBoxContainer/HBoxContainer2/InstructionsPerTickSlider
+@onready var spin_box: SpinBox = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/IPSContainer/MarginContainer/VBoxContainer/HBoxContainer2/SpinBox
 
-@onready var zero_value: Label = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/ZeroValue
-@onready var carry_value: Label = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/CarryValue
+@onready var zero_value: Label = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/FlagsContainer/MarginContainer/VBoxContainer/HBoxContainer/ZeroValue
+@onready var carry_value: Label = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/FlagsContainer/MarginContainer/VBoxContainer/HBoxContainer/CarryValue
+
+@onready var registers_label: RichTextLabel = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/RegistersContainer/MarginContainer/ScrollContainer/RegistersLabel
+@onready var memory_label: RichTextLabel = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/MemoryContainer/MarginContainer/ScrollContainer/MemoryLabel
+
+@onready var update_registers_checkbox: CheckBox = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/SettingsContainer/MarginContainer/HBoxContainer/UpdateRegisters
+@onready var update_memory_checkbox: CheckBox = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/SettingsContainer/MarginContainer/HBoxContainer/UpdateMemory
 
 var reset := true
 
@@ -40,6 +46,12 @@ func _process(_delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
+		if event.is_action_pressed("fullscreen"):
+			if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			else:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		
 		if event.is_action_pressed("start"): start_pressed = true
 		if event.is_action_released("start"): start_pressed = false
 		
@@ -63,7 +75,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		if event.is_action_pressed("left"): left_pressed = true
 		if event.is_action_released("left"): left_pressed = false
-		
+
 
 func update_controller() -> void:
 	machine_node.set_controller_value(7, start_pressed)
@@ -80,6 +92,8 @@ func update_controller() -> void:
 func update_all() -> void:
 	update_program_counter()
 	update_flags()
+	update_registers()
+	update_memory()
 
 func update_start_button() -> void:
 	if machine_node.is_running():
@@ -96,6 +110,40 @@ func update_program_counter() -> void:
 func update_flags() -> void:
 	zero_value.text = var_to_str(machine_node.get_zero_flag())
 	carry_value.text = var_to_str(machine_node.get_carry_flag())
+
+func update_registers() -> void:
+	if not update_registers_checkbox.button_pressed:
+		return
+	
+	var registers_text = ""
+	var registers = machine_node.get_registers()
+	
+	for i in range(len(registers)):
+		var register = registers[i]
+		registers_text += "r%-3s [color=ffffff4f]%03d[/color]" % ["%d:" % i, register]
+		if i % 3 < 2:
+			registers_text += "  "
+		else:
+			registers_text += "\n"
+	
+	registers_label.text = registers_text
+
+func update_memory() -> void:
+	if not update_memory_checkbox.button_pressed:
+		return
+	
+	var memory_text = ""
+	var memory = machine_node.get_memory()
+	
+	for i in range(len(memory)):
+		var value = memory[i]
+		memory_text += "%-4s [color=ffffff4f]%03d[/color]" % ["%d:" % i, value]
+		if i % 3 < 2:
+			memory_text += "  "
+		else:
+			memory_text += "\n"
+	
+	memory_label.text = memory_text
 
 func _on_machine_node_ticked() -> void:
 	update_all()

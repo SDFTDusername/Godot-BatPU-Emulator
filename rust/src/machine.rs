@@ -36,9 +36,9 @@ impl INode for MachineNode {
             tick_instantly: false,
             previous_time: Time::singleton().get_ticks_usec(),
             remaining_micros: 0,
-            
+
             run: false,
-            
+
             instructions_per_second: 100,
 
             screen_rect: None
@@ -177,11 +177,11 @@ impl MachineNode {
             screen.disable_image_updated();
         }
     }
-    
+
     #[func]
     fn set_controller_value(&mut self, index: u32, value: bool) {
         let controller = self.machine.controller_mut();
-        
+
         match index {
             7 => controller.start = value,
             6 => controller.select = value,
@@ -193,8 +193,18 @@ impl MachineNode {
             2 => controller.right = value,
             1 => controller.down = value,
             0 => controller.left = value,
-            
+
             _ => panic!("Unknown controller index {}", index)
         };
+    }
+
+    #[func]
+    fn get_registers(&self) -> PackedByteArray {
+        PackedByteArray::from(self.machine.registers())
+    }
+
+    #[func]
+    fn get_memory(&self) -> PackedByteArray {
+        PackedByteArray::from(self.machine.memory())
     }
 }

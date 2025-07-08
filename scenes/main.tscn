@@ -345,75 +345,75 @@ split_offset = 305
 [node name="ControlColumn" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
+[node name="ControlContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="PCLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="PCLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Program Counter:"
 vertical_alignment = 1
 
-[node name="PCValue" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="PCValue" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "0000"
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="StartButton" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 shortcut = SubResource("Shortcut_50glp")
 text = "Start"
 
-[node name="ResetButton" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ResetButton" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 shortcut = SubResource("Shortcut_bmxlf")
 text = "Reset"
 
-[node name="StepButton" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="StepButton" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 shortcut = SubResource("Shortcut_grg3l")
 text = "Step"
 
-[node name="PanelContainer7" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
+[node name="IPSContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/IPSContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/IPSContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="ExecutionSpeedLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer"]
+[node name="ExecutionSpeedLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/IPSContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Instructions per second:"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/IPSContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="InstructionsPerTickSlider" type="HSlider" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="InstructionsPerTickSlider" type="HSlider" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/IPSContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -423,7 +423,7 @@ max_value = 100000.0
 value = 100.0
 exp_edit = true
 
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/IPSContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 min_value = 1.0
@@ -431,78 +431,109 @@ max_value = 100000.0
 value = 100.0
 rounded = true
 
-[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
+[node name="FlagsContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/FlagsContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/FlagsContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/FlagsContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="ZeroLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ZeroLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/FlagsContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Zero:"
 horizontal_alignment = 1
 
-[node name="ZeroValue" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ZeroValue" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/FlagsContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(49, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.309804)
 text = "false"
 
-[node name="VSeparator" type="VSeparator" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/FlagsContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 
-[node name="CarryLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="CarryLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/FlagsContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Carry:"
 horizontal_alignment = 1
 
-[node name="CarryValue" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="CarryValue" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/FlagsContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(49, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.309804)
 text = "false"
 
-[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
+[node name="RegistersContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer4"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/RegistersContainer"]
 layout_mode = 2
 
-[node name="PanelContainer5" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/RegistersContainer/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="RegistersLabel" type="RichTextLabel" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/RegistersContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+
+[node name="MemoryContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer5"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/MemoryContainer"]
 layout_mode = 2
 
-[node name="PanelContainer6" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/MemoryContainer/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="MemoryLabel" type="RichTextLabel" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/MemoryContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+
+[node name="SettingsContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer6"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/SettingsContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer6/MarginContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/SettingsContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="CameraSetting" type="CheckBox" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer6/MarginContainer/HBoxContainer"]
+[node name="UpdateRegisters" type="CheckBox" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/SettingsContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+button_pressed = true
+text = "Update Registers"
+
+[node name="UpdateMemory" type="CheckBox" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/SettingsContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+button_pressed = true
+text = "Update Memory"
+
+[node name="FollowAssembly" type="CheckBox" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/SettingsContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 button_pressed = true
 text = "Follow Assembly"
-
-[node name="FullscreenSetting" type="CheckBox" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer6/MarginContainer/HBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-text = "Fullscreen"
 
 [node name="AssemblyColumn" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer"]
 layout_mode = 2
@@ -558,6 +589,7 @@ minimap_draw = true
 caret_blink = true
 highlight_all_occurrences = true
 highlight_current_line = true
+draw_tabs = true
 gutters_draw_line_numbers = true
 delimiter_strings = Array[String]([])
 script = ExtResource("4_rgh2o")
@@ -598,11 +630,11 @@ cancel_button_text = "No"
 [node name="MachineNode" type="MachineNode" parent="." node_paths=PackedStringArray("screen_rect")]
 screen_rect = NodePath("../MarginContainer/HSplitContainer/DisplayColumn/Display/MarginContainer/TextureRect")
 
-[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StepButton" to="." method="_on_step_button_pressed"]
-[connection signal="value_changed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/InstructionsPerTickSlider" to="." method="_on_instructions_per_tick_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/SpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer/StepButton" to="." method="_on_step_button_pressed"]
+[connection signal="value_changed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/IPSContainer/MarginContainer/VBoxContainer/HBoxContainer2/InstructionsPerTickSlider" to="." method="_on_instructions_per_tick_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/IPSContainer/MarginContainer/VBoxContainer/HBoxContainer2/SpinBox" to="." method="_on_spin_box_value_changed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer/New" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_new_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer/Open" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_open_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer/Save" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_save_pressed"]
