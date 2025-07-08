@@ -177,4 +177,24 @@ impl MachineNode {
             screen.disable_image_updated();
         }
     }
+    
+    #[func]
+    fn set_controller_value(&mut self, index: u32, value: bool) {
+        let controller = self.machine.controller_mut();
+        
+        match index {
+            7 => controller.start = value,
+            6 => controller.select = value,
+
+            5 => controller.a = value,
+            4 => controller.b = value,
+
+            3 => controller.up = value,
+            2 => controller.right = value,
+            1 => controller.down = value,
+            0 => controller.left = value,
+            
+            _ => panic!("Unknown controller index {}", index)
+        };
+    }
 }

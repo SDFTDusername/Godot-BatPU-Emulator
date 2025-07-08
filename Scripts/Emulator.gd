@@ -2,26 +2,42 @@ extends Control
 
 @onready var machine_node: MachineNode = $MachineNode
 
-@onready var start_button: Button = $MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StartButton
-@onready var reset_button: Button = $MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ResetButton
-@onready var step_button: Button = $MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StepButton
+@onready var start_button: Button = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StartButton
+@onready var reset_button: Button = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ResetButton
+@onready var step_button: Button = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StepButton
 
-@onready var instructions_per_tick_slider: HSlider = $MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/InstructionsPerTickSlider
-@onready var spin_box: SpinBox = $MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/SpinBox
+@onready var pc_value: Label = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/PCValue
 
-@onready var pc_value: Label = $MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/PCValue
+@onready var instructions_per_tick_slider: HSlider = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/InstructionsPerTickSlider
+@onready var spin_box: SpinBox = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/SpinBox
 
-@onready var zero_value: Label = $MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/ZeroValue
-@onready var carry_value: Label = $MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/CarryValue
+@onready var zero_value: Label = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/ZeroValue
+@onready var carry_value: Label = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/CarryValue
 
 var reset := true
 
 func _ready() -> void:
 	update_start_button()
 	update_all()
+	update_controller()
 	
 	machine_node.update_screen(true)
 	machine_node.load_mc_file("movement.mc")
+
+func _process(_delta: float) -> void:
+	update_controller()
+
+func update_controller() -> void:
+	machine_node.set_controller_value(7, Input.is_action_pressed("start"))
+	machine_node.set_controller_value(6, Input.is_action_pressed("select"))
+	
+	machine_node.set_controller_value(5, Input.is_action_pressed("a"))
+	machine_node.set_controller_value(4, Input.is_action_pressed("b"))
+	
+	machine_node.set_controller_value(3, Input.is_action_pressed("up"))
+	machine_node.set_controller_value(2, Input.is_action_pressed("right"))
+	machine_node.set_controller_value(1, Input.is_action_pressed("down"))
+	machine_node.set_controller_value(0, Input.is_action_pressed("left"))
 
 func update_all() -> void:
 	update_program_counter()
@@ -61,6 +77,7 @@ func _on_reset_button_pressed() -> void:
 	
 	update_start_button()
 	update_all()
+	update_controller()
 
 func _on_step_button_pressed() -> void:
 	machine_node.tick()

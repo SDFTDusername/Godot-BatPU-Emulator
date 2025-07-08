@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0pmv6pxy3ax2"]
+[gd_scene load_steps=6 format=3 uid="uid://d0pmv6pxy3ax2"]
 
 [ext_resource type="Script" uid="uid://dx0rlg3ee2lgh" path="res://Scripts/Emulator.gd" id="1_idj7w"]
 [ext_resource type="Texture2D" uid="uid://dk44tobqhpg87" path="res://Textures/ScreenPlaceholder.png" id="1_r150o"]
+[ext_resource type="Script" uid="uid://dtcdk3vdr3lip" path="res://Scripts/ControllerButton.gd" id="3_kln2b"]
+[ext_resource type="Script" uid="uid://dtd41uogysxfp" path="res://Scripts/CodeEditor.gd" id="4_rgh2o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_idj7w"]
 font_size = 12
@@ -33,29 +35,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
+split_offset = 380
 
-[node name="DisplayColumn" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/DisplayColumn"]
+[node name="DisplayColumn" type="VBoxContainer" parent="MarginContainer/HSplitContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/DisplayColumn"]
 layout_mode = 2
 
-[node name="TextPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer"]
+[node name="TextPanel" type="PanelContainer" parent="MarginContainer/HSplitContainer/DisplayColumn/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer/TextPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/DisplayColumn/HBoxContainer/TextPanel"]
 layout_mode = 2
 
-[node name="TextLabel" type="Label" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer/TextPanel/MarginContainer"]
+[node name="TextLabel" type="Label" parent="MarginContainer/HSplitContainer/DisplayColumn/HBoxContainer/TextPanel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -64,14 +63,14 @@ text = "__________"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NumPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer"]
+[node name="NumPanel" type="PanelContainer" parent="MarginContainer/HSplitContainer/DisplayColumn/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer/NumPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/DisplayColumn/HBoxContainer/NumPanel"]
 layout_mode = 2
 
-[node name="NumLabel" type="Label" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/HBoxContainer/NumPanel/MarginContainer"]
+[node name="NumLabel" type="Label" parent="MarginContainer/HSplitContainer/DisplayColumn/HBoxContainer/NumPanel/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 32
@@ -79,36 +78,35 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Display" type="PanelContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer"]
+[node name="Display" type="PanelContainer" parent="MarginContainer/HSplitContainer/DisplayColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Display"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/DisplayColumn/Display"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Display/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/DisplayColumn/Display/MarginContainer"]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("1_r150o")
 stretch_mode = 5
 
-[node name="Controller" type="PanelContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer"]
+[node name="Controller" type="PanelContainer" parent="MarginContainer/HSplitContainer/DisplayColumn"]
 custom_minimum_size = Vector2(0, 155)
 layout_mode = 2
 
-[node name="Control" type="MarginContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller"]
+[node name="Control" type="MarginContainer" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller"]
 layout_mode = 2
 
-[node name="Control" type="HBoxContainer" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control"]
+[node name="Control" type="HBoxContainer" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control"]
-visible = false
+[node name="Control" type="Control" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control/Control"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
-[node name="Directions" type="Control" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control"]
+[node name="Directions" type="Control" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control/Control/Control"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -118,7 +116,7 @@ offset_right = 120.0
 offset_bottom = 60.0
 grow_vertical = 2
 
-[node name="Up" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control/Directions"]
+[node name="Up" type="Button" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control/Control/Control/Directions"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -127,9 +125,12 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 40.0
 grow_horizontal = 2
+focus_mode = 0
 text = "↑"
+script = ExtResource("3_kln2b")
+action_name = &"up"
 
-[node name="Down" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control/Directions"]
+[node name="Down" type="Button" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control/Control/Control/Directions"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -141,9 +142,12 @@ offset_top = -40.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_mode = 0
 text = "↓"
+script = ExtResource("3_kln2b")
+action_name = &"down"
 
-[node name="Left" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control/Directions"]
+[node name="Left" type="Button" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control/Control/Control/Directions"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -152,9 +156,12 @@ offset_top = -20.0
 offset_right = 40.0
 offset_bottom = 20.0
 grow_vertical = 2
+focus_mode = 0
 text = "←"
+script = ExtResource("3_kln2b")
+action_name = &"left"
 
-[node name="Right" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control/Directions"]
+[node name="Right" type="Button" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control/Control/Control/Directions"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -166,13 +173,16 @@ offset_top = -20.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+focus_mode = 0
 text = "→"
+script = ExtResource("3_kln2b")
+action_name = &"right"
 
-[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control"]
+[node name="Control2" type="Control" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control/Control"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Menu" type="Control" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control2"]
+[node name="Menu" type="Control" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control/Control/Control2"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -182,7 +192,7 @@ offset_right = 66.5
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="Select" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control2/Menu"]
+[node name="Select" type="Button" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control/Control/Control2/Menu"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -191,9 +201,12 @@ offset_top = -20.0
 offset_right = 40.0
 offset_bottom = 20.0
 grow_vertical = 2
+focus_mode = 0
 text = "Select"
+script = ExtResource("3_kln2b")
+action_name = &"select"
 
-[node name="Start" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control2/Menu"]
+[node name="Start" type="Button" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control/Control/Control2/Menu"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -205,14 +218,17 @@ offset_top = -20.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+focus_mode = 0
 text = "Start
 "
+script = ExtResource("3_kln2b")
+action_name = &"start"
 
-[node name="Control3" type="Control" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control"]
+[node name="Control3" type="Control" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control/Control"]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 
-[node name="Actions" type="Control" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control3"]
+[node name="Actions" type="Control" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control/Control/Control3"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -225,7 +241,7 @@ offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Left" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control3/Actions"]
+[node name="A" type="Button" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control/Control/Control3/Actions"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -234,9 +250,12 @@ offset_top = -20.0
 offset_right = 40.0
 offset_bottom = 20.0
 grow_vertical = 2
+focus_mode = 0
 text = "A"
+script = ExtResource("3_kln2b")
+action_name = &"a"
 
-[node name="Right" type="Button" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Controller/Control/Control/Control3/Actions"]
+[node name="B" type="Button" parent="MarginContainer/HSplitContainer/DisplayColumn/Controller/Control/Control/Control3/Actions"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -248,209 +267,218 @@ offset_top = -20.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+focus_mode = 0
 text = "B"
+script = ExtResource("3_kln2b")
+action_name = &"b"
 
-[node name="Credits" type="Label" parent="MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer"]
+[node name="Credits" type="Label" parent="MarginContainer/HSplitContainer/DisplayColumn"]
 layout_mode = 2
 text = "BatPU Emulator by AdoHTQ
 Fork by SDFTDusername"
 label_settings = SubResource("LabelSettings_idj7w")
 horizontal_alignment = 1
 
-[node name="ControlColumn" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/HSplitContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/separation = 0
+split_offset = 305
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn"]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer"]
+[node name="ControlColumn" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="PCLabel" type="Label" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="PCLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Program Counter:"
 vertical_alignment = 1
 
-[node name="PCValue" type="Label" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="PCValue" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "0000"
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="StartButton" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-toggle_mode = true
+focus_mode = 0
 text = "Start"
 
-[node name="ResetButton" type="Button" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ResetButton" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 text = "Reset"
 
-[node name="StepButton" type="Button" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="StepButton" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 text = "Step"
 
-[node name="PanelContainer7" type="PanelContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer"]
+[node name="PanelContainer7" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer"]
 layout_mode = 2
 
-[node name="ExecutionSpeedLabel" type="Label" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer"]
+[node name="ExecutionSpeedLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Instructions per second:"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="InstructionsPerTickSlider" type="HSlider" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="InstructionsPerTickSlider" type="HSlider" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+focus_mode = 0
 min_value = 1.0
 max_value = 100000.0
 value = 100.0
 exp_edit = true
 
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+min_value = 1.0
 max_value = 100000.0
 value = 100.0
 rounded = true
 
-[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="ZeroLabel" type="Label" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ZeroLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Zero:"
 horizontal_alignment = 1
 
-[node name="ZeroValue" type="Label" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ZeroValue" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(49, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.309804)
 text = "false"
 
-[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 
-[node name="CarryLabel" type="Label" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="CarryLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Carry:"
 horizontal_alignment = 1
 
-[node name="CarryValue" type="Label" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="CarryValue" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(49, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.309804)
 text = "false"
 
-[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer"]
+[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer4"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer4"]
 layout_mode = 2
 
-[node name="PanelContainer5" type="PanelContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer"]
+[node name="PanelContainer5" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer5"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer5"]
 layout_mode = 2
 
-[node name="PanelContainer6" type="PanelContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer"]
+[node name="PanelContainer6" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer6"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6/MarginContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer6/MarginContainer"]
 layout_mode = 2
 
-[node name="CameraSetting" type="CheckBox" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6/MarginContainer/HBoxContainer"]
+[node name="CameraSetting" type="CheckBox" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer6/MarginContainer/HBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 button_pressed = true
 text = "Follow Assembly"
 
-[node name="FullscreenSetting" type="CheckBox" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer6/MarginContainer/HBoxContainer"]
+[node name="FullscreenSetting" type="CheckBox" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer6/MarginContainer/HBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 text = "Fullscreen"
 
-[node name="AssemblyColumn" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+[node name="AssemblyColumn" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="New" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/AssemblyColumn"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/AssemblyColumn/PanelContainer2"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/AssemblyColumn/PanelContainer2/MarginContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/AssemblyColumn/PanelContainer2/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="New" type="Button" parent="MarginContainer/HBoxContainer/AssemblyColumn/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
+focus_mode = 0
 text = "New"
 
-[node name="Open" type="Button" parent="MarginContainer/HBoxContainer/AssemblyColumn/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Open" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 text = "Open"
 
-[node name="Save" type="Button" parent="MarginContainer/HBoxContainer/AssemblyColumn/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Save" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 text = "Save"
 
-[node name="FileLabel" type="Label" parent="MarginContainer/HBoxContainer/AssemblyColumn/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="FileLabel" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "movement.asm"
 horizontal_alignment = 1
 
-[node name="CodeEdit" type="CodeEdit" parent="MarginContainer/HBoxContainer/AssemblyColumn/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="CodeEdit" type="CodeEdit" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 highlight_all_occurrences = true
@@ -458,13 +486,14 @@ draw_tabs = true
 draw_spaces = true
 gutters_draw_line_numbers = true
 delimiter_strings = Array[String]([])
+script = ExtResource("4_rgh2o")
 
 [node name="MachineNode" type="MachineNode" parent="." node_paths=PackedStringArray("screen_rect")]
-screen_rect = NodePath("../MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Display/MarginContainer/TextureRect")
+screen_rect = NodePath("../MarginContainer/HSplitContainer/DisplayColumn/Display/MarginContainer/TextureRect")
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StepButton" to="." method="_on_step_button_pressed"]
-[connection signal="value_changed" from="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/InstructionsPerTickSlider" to="." method="_on_instructions_per_tick_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/SpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StepButton" to="." method="_on_step_button_pressed"]
+[connection signal="value_changed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/InstructionsPerTickSlider" to="." method="_on_instructions_per_tick_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/SpinBox" to="." method="_on_spin_box_value_changed"]
 [connection signal="ticked" from="MachineNode" to="." method="_on_machine_node_ticked"]

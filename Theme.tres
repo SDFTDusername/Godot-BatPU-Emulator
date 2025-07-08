@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://fsuleckmramo"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://fsuleckmramo"]
 
 [ext_resource type="StyleBox" uid="uid://bqayi4es415hg" path="res://PanelTheme.tres" id="1_yd3fu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yd3fu"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_yd3fu"]
 color = Color(0.216821, 0.247671, 0.290864, 1)
@@ -28,6 +30,7 @@ vertical = true
 
 [resource]
 BoxContainer/constants/separation = 5
+CodeEdit/styles/focus = SubResource("StyleBoxEmpty_yd3fu")
 HSeparator/styles/separator = SubResource("StyleBoxLine_yd3fu")
 MarginContainer/constants/margin_bottom = 5
 MarginContainer/constants/margin_left = 5
