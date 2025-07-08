@@ -1,16 +1,40 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://fsuleckmramo"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://fsuleckmramo"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abrne"]
+[ext_resource type="StyleBox" uid="uid://bqayi4es415hg" path="res://PanelTheme.tres" id="1_yd3fu"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_yd3fu"]
+color = Color(0.216821, 0.247671, 0.290864, 1)
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yd3fu"]
+content_margin_left = 10.0
+content_margin_right = 10.0
 bg_color = Color(0.145098, 0.168627, 0.203922, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23v3e"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.127855, 0.149424, 0.181779, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_23v3e"]
+color = Color(0.216821, 0.247671, 0.290864, 1)
+thickness = 2
+vertical = true
 
 [resource]
 BoxContainer/constants/separation = 5
+HSeparator/styles/separator = SubResource("StyleBoxLine_yd3fu")
 MarginContainer/constants/margin_bottom = 5
 MarginContainer/constants/margin_left = 5
 MarginContainer/constants/margin_right = 5
 MarginContainer/constants/margin_top = 5
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_abrne")
+PanelContainer/styles/panel = ExtResource("1_yd3fu")
+TabContainer/styles/panel = ExtResource("1_yd3fu")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_yd3fu")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_23v3e")
+VSeparator/styles/separator = SubResource("StyleBoxLine_23v3e")
