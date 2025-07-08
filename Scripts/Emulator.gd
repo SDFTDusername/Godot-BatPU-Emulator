@@ -33,7 +33,7 @@ func _ready() -> void:
 	update_controller()
 	
 	machine_node.update_screen(true)
-	machine_node.load_mc_file("movement.mc")
+	machine_node.load_mc_file("movement.batpu")
 
 func _process(_delta: float) -> void:
 	update_controller()
