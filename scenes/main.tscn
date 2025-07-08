@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0pmv6pxy3ax2"]
+[gd_scene load_steps=4 format=3 uid="uid://d0pmv6pxy3ax2"]
 
+[ext_resource type="Script" uid="uid://dx0rlg3ee2lgh" path="res://Scripts/Emulator.gd" id="1_idj7w"]
 [ext_resource type="Texture2D" uid="uid://dk44tobqhpg87" path="res://Textures/ScreenPlaceholder.png" id="1_r150o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_idj7w"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_idj7w")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -326,6 +328,7 @@ value = 100.0
 exp_edit = true
 
 [node name="SpinBox" type="SpinBox" parent="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 max_value = 100000.0
 value = 100.0
@@ -420,4 +423,12 @@ draw_spaces = true
 gutters_draw_line_numbers = true
 delimiter_strings = Array[String]([])
 
-[node name="MachineNode" type="MachineNode" parent="."]
+[node name="MachineNode" type="MachineNode" parent="." node_paths=PackedStringArray("screen_rect")]
+screen_rect = NodePath("../MarginContainer/HBoxContainer/DisplayColumn/VBoxContainer/Display/MarginContainer/TextureRect")
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StepButton" to="." method="_on_step_button_pressed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/InstructionsPerTickSlider" to="." method="_on_instructions_per_tick_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/ControlColumn/VBoxContainer/PanelContainer7/MarginContainer/VBoxContainer/HBoxContainer2/SpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="ticked" from="MachineNode" to="." method="_on_machine_node_ticked"]

@@ -7,5 +7,6 @@ edition = "2024"
 crate-type = ["cdylib"]
 
 [dependencies]
+batpu-assembly = { git = "https://github.com/SDFTDusername/batpu-assembly.git", version = "0.0.1" }
 batpu-emulator = { git = "https://github.com/SDFTDusername/batpu-emulator.git", version = "0.0.1" }
 godot = "0.3.2"

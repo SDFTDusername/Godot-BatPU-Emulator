@@ -14,12 +14,13 @@ dependencies = [
 [[package]]
 name = "batpu-assembly"
 version = "0.0.1"
-source = "git+https://github.com/SDFTDusername/batpu-assembly.git#4a8804eb090d97bac58b00030f2b1afdec84f13c"
+source = "git+https://github.com/SDFTDusername/batpu-assembly.git#d9f433c4b9118eb6e4b9368fec0e2dfb00c75cc7"
 
 [[package]]
 name = "batpu-emulator"
 version = "0.0.1"
 dependencies = [
+ "batpu-assembly",
  "batpu-emulator 0.0.1 (git+https://github.com/SDFTDusername/batpu-emulator.git)",
  "godot",
 ]
@@ -27,7 +28,7 @@ dependencies = [
 [[package]]
 name = "batpu-emulator"
 version = "0.0.1"
-source = "git+https://github.com/SDFTDusername/batpu-emulator.git#1b0bac240c16e95eb3bb84c68e1eda428636d707"
+source = "git+https://github.com/SDFTDusername/batpu-emulator.git#cc217a7e01d0bce86e29c90e8bfffc66aa774909"
 dependencies = [
  "batpu-assembly",
  "rand",
