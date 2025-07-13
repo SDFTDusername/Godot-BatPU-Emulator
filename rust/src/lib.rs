@@ -1,10 +1,8 @@
-mod machine;
+mod machine_node;
 
 use godot::prelude::*;
 
 struct EmulatorExtension;
 
 #[gdextension]
-unsafe impl ExtensionLibrary for EmulatorExtension {
-    
-}
+unsafe impl ExtensionLibrary for EmulatorExtension {}
