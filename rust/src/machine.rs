@@ -16,12 +16,21 @@ struct MachineNode {
     machine: Machine,
 
     tick_instantly: bool,
+    
     previous_time: u64,
     remaining_micros: u64,
 
+    speed_accum_start: u64,
+    sum_actual_ticks: f64,
+    sum_ideal_ticks: f64,
+    average_tick_duration: Option<f64>,
+
     run: bool,
+    
+    #[var] speed_percentage: f32,
 
     #[export] instructions_per_second: u32,
+    #[export] speed_interval_micros: u32,
 
     #[export] screen_rect: Option<Gd<TextureRect>>
 }
@@ -29,50 +38,35 @@ struct MachineNode {
 #[godot_api]
 impl INode for MachineNode {
     fn init(base: Base<Node>) -> Self {
+        let current_time = Time::singleton().get_ticks_usec();
+        
         Self {
             base,
             machine: Machine::new(),
 
             tick_instantly: false,
-            previous_time: Time::singleton().get_ticks_usec(),
+            
+            previous_time: current_time,
             remaining_micros: 0,
+            
+            speed_accum_start: current_time,
+            sum_actual_ticks: 0.0,
+            sum_ideal_ticks: 0.0,
+            average_tick_duration: None,
+            
+            speed_percentage: 0.0,
 
             run: false,
 
             instructions_per_second: 100,
+            speed_interval_micros: 500_000, // 0.5 seconds
 
             screen_rect: None
         }
     }
 
     fn process(&mut self, _delta: f64) {
-        let current_time = Time::singleton().get_ticks_usec();
-
-        if !self.run || self.tick_instantly {
-            self.previous_time = current_time;
-            self.remaining_micros = 0;
-
-            if self.tick_instantly && self.run {
-                self.tick_instantly = false;
-                self.tick();
-            }
-
-            return;
-        }
-
-        let delta_time_micros = current_time - self.previous_time;
-        self.previous_time = current_time;
-
-        let tick_micros = delta_time_micros
-            .saturating_mul(self.instructions_per_second as u64)
-            .saturating_add(self.remaining_micros);
-
-        let ticks_to_run = tick_micros / 1_000_000;
-        self.remaining_micros = tick_micros % 1_000_000;
-
-        for _ in 0..ticks_to_run {
-            self.tick();
-        }
+        self.run_ticks();
     }
 }
 
@@ -105,6 +99,9 @@ impl MachineNode {
     fn reset(&mut self) {
         self.machine.reset();
         self.update_screen(false);
+        
+        self.reset_time_fields();
+        self.speed_percentage = 0.0;
     }
 
     #[func]
@@ -206,5 +203,95 @@ impl MachineNode {
     #[func]
     fn get_memory(&self) -> PackedByteArray {
         PackedByteArray::from(self.machine.memory())
+    }
+
+    fn reset_time_fields(&mut self) {
+        let current_time = Time::singleton().get_ticks_usec();
+        
+        self.previous_time = current_time;
+        self.remaining_micros = 0;
+
+        self.speed_accum_start = current_time;
+        self.sum_actual_ticks = 0.0;
+        self.sum_ideal_ticks = 0.0;
+        self.average_tick_duration = None;
+    }
+    
+    fn run_ticks(&mut self) {
+        if !self.run || self.tick_instantly {
+            self.reset_time_fields();
+
+            if self.tick_instantly && self.run {
+                self.tick_instantly = false;
+                self.tick();
+            }
+
+            return;
+        }
+        
+        let current_time = Time::singleton().get_ticks_usec();
+
+        let delta_time = current_time - self.previous_time;
+        self.previous_time = current_time;
+
+        let tick_micros = delta_time
+            .saturating_mul(self.instructions_per_second as u64)
+            .saturating_add(self.remaining_micros);
+
+        let mut ticks_to_run = tick_micros / 1_000_000;
+        self.remaining_micros = tick_micros % 1_000_000;
+
+        // Cap ticks to run
+        if let Some(average_tick_duration) = self.average_tick_duration {
+            let max_ticks = (delta_time as f64 / average_tick_duration) as u64;
+            
+            if ticks_to_run > max_ticks {
+                let removed = ticks_to_run - max_ticks;
+                let micros_reclaim = removed
+                    .saturating_mul(1_000_000)
+                    / (self.instructions_per_second as u64);
+                
+                self.remaining_micros = self.remaining_micros.saturating_add(micros_reclaim);
+                ticks_to_run = max_ticks;
+            }
+        }
+        
+        let loop_start = Time::singleton().get_ticks_usec();
+        
+        for _ in 0..ticks_to_run {
+            self.tick();
+        }
+        
+        let loop_duration = Time::singleton().get_ticks_usec()
+            .saturating_sub(loop_start);
+        
+        let this_average = if ticks_to_run > 0 {
+            loop_duration as f64 / ticks_to_run as f64
+        } else {
+            0.0
+        };
+        
+        self.average_tick_duration = Some(
+            self.average_tick_duration.map_or(this_average, |previous| previous * 0.9 + this_average * 0.1)
+        );
+
+        let ideal_ticks = (self.instructions_per_second as f64)
+            * (delta_time as f64 / 1_000_000.0);
+
+        self.sum_actual_ticks += ticks_to_run as f64;
+        self.sum_ideal_ticks += ideal_ticks;
+
+        // Update speed percentage
+        if current_time - self.speed_accum_start >= self.speed_interval_micros as u64 {
+            self.speed_percentage = if self.sum_ideal_ticks > 0.0 {
+                ((self.sum_actual_ticks / self.sum_ideal_ticks) * 100.0) as f32
+            } else {
+                100.0
+            };
+
+            self.sum_actual_ticks = 0.0;
+            self.sum_ideal_ticks = 0.0;
+            self.speed_accum_start = current_time;
+        }
     }
 }

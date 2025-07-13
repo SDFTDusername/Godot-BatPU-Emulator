@@ -7,6 +7,7 @@ extends Control
 @onready var step_button: Button = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer/StepButton
 
 @onready var pc_value: Label = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer2/PCValue
+@onready var speed_value: Label = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer3/SpeedValue
 
 @onready var instructions_per_tick_slider: HSlider = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/IPSContainer/MarginContainer/VBoxContainer/HBoxContainer2/InstructionsPerTickSlider
 @onready var spin_box: SpinBox = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/IPSContainer/MarginContainer/VBoxContainer/HBoxContainer2/SpinBox
@@ -90,7 +91,7 @@ func update_controller() -> void:
 	machine_node.set_controller_value(0, left_pressed)
 
 func update_all() -> void:
-	update_program_counter()
+	update_info()
 	update_flags()
 	update_registers()
 	update_memory()
@@ -104,8 +105,9 @@ func update_start_button() -> void:
 		else:
 			start_button.text = "Resume"
 
-func update_program_counter() -> void:
+func update_info() -> void:
 	pc_value.text = "%04d" % machine_node.get_program_counter()
+	speed_value.text = "%d%%" % machine_node.speed_percentage
 
 func update_flags() -> void:
 	zero_value.text = var_to_str(machine_node.get_zero_flag())
