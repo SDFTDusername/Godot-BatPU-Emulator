@@ -74,6 +74,9 @@ impl INode for MachineNode {
 impl MachineNode {
     #[signal]
     fn ticked();
+    
+    #[signal]
+    fn last_ticked();
 
     #[func]
     fn is_running(&self) -> bool {
@@ -133,11 +136,15 @@ impl MachineNode {
     }
 
     #[func]
-    fn tick(&mut self) {
+    fn tick(&mut self, last: bool) {
         self.machine.tick();
         self.update_screen(false);
 
-        self.signals().ticked().emit();
+        if last {
+            self.signals().last_ticked().emit();
+        } else {
+            self.signals().ticked().emit();
+        }
     }
 
     #[func]
@@ -204,6 +211,46 @@ impl MachineNode {
     fn get_memory(&self) -> PackedByteArray {
         PackedByteArray::from(self.machine.memory())
     }
+    
+    #[func]
+    fn is_registers_updated(&self) -> bool {
+        self.machine.registers_updated()
+    }
+    
+    #[func]
+    fn disable_registers_updated(&mut self) {
+        self.machine.disable_registers_updated();
+    }
+
+    #[func]
+    fn is_memory_updated(&self) -> bool {
+        self.machine.memory_updated()
+    }
+
+    #[func]
+    fn disable_memory_updated(&mut self) {
+        self.machine.disable_memory_updated();
+    }
+
+    #[func]
+    fn is_stack_updated(&self) -> bool {
+        self.machine.stack().stack_updated()
+    }
+
+    #[func]
+    fn disable_stack_updated(&mut self) {
+        self.machine.stack_mut().disable_stack_updated();
+    }
+
+    #[func]
+    fn is_flags_updated(&self) -> bool {
+        self.machine.flags_updated()
+    }
+
+    #[func]
+    fn disable_flags_updated(&mut self) {
+        self.machine.disable_flags_updated();
+    }
 
     fn reset_time_fields(&mut self) {
         let current_time = Time::singleton().get_ticks_usec();
@@ -223,7 +270,7 @@ impl MachineNode {
 
             if self.tick_instantly && self.run {
                 self.tick_instantly = false;
-                self.tick();
+                self.tick(true);
             }
 
             return;
@@ -258,8 +305,8 @@ impl MachineNode {
         
         let loop_start = Time::singleton().get_ticks_usec();
         
-        for _ in 0..ticks_to_run {
-            self.tick();
+        for i in 0..ticks_to_run {
+            self.tick(i == ticks_to_run - 1);
         }
         
         let loop_duration = Time::singleton().get_ticks_usec()

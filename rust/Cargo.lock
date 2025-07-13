@@ -28,7 +28,7 @@ dependencies = [
 [[package]]
 name = "batpu-emulator"
 version = "0.0.1"
-source = "git+https://github.com/SDFTDusername/batpu-emulator.git#b2d2339dd93f217b2344116d4f354b89caeabcde"
+source = "git+https://github.com/SDFTDusername/batpu-emulator.git#431a2f9ae5bf43e595d5bc2e4dc306197d7a29fa"
 dependencies = [
  "batpu-assembly",
  "rand",

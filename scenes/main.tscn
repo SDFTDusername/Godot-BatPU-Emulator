@@ -664,4 +664,4 @@ screen_rect = NodePath("../MarginContainer/HSplitContainer/DisplayColumn/Display
 [connection signal="file_selected" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/SaveFileDialog" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_save_file_dialog_file_selected"]
 [connection signal="confirmed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/NewDialog" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_new_dialog_confirmed"]
 [connection signal="confirmed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/OpenDialog" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_open_dialog_confirmed"]
-[connection signal="ticked" from="MachineNode" to="." method="_on_machine_node_ticked"]
+[connection signal="last_ticked" from="MachineNode" to="." method="_on_machine_node_last_ticked"]

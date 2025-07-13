@@ -110,11 +110,19 @@ func update_info() -> void:
 	speed_value.text = "%d%%" % machine_node.speed_percentage
 
 func update_flags() -> void:
+	if not machine_node.is_flags_updated():
+		return
+	
 	zero_value.text = var_to_str(machine_node.get_zero_flag())
 	carry_value.text = var_to_str(machine_node.get_carry_flag())
+	
+	machine_node.disable_flags_updated()
 
 func update_registers() -> void:
 	if not update_registers_checkbox.button_pressed:
+		return
+	
+	if not machine_node.is_registers_updated():
 		return
 	
 	var registers_text = ""
@@ -129,9 +137,13 @@ func update_registers() -> void:
 			registers_text += "\n"
 	
 	registers_label.text = registers_text
+	machine_node.disable_registers_updated()
 
 func update_memory() -> void:
 	if not update_memory_checkbox.button_pressed:
+		return
+	
+	if not machine_node.is_memory_updated():
 		return
 	
 	var memory_text = ""
@@ -146,8 +158,9 @@ func update_memory() -> void:
 			memory_text += "\n"
 	
 	memory_label.text = memory_text
+	self.machine_node.disable_memory_updated()
 
-func _on_machine_node_ticked() -> void:
+func _on_machine_node_last_ticked() -> void:
 	update_all()
 
 func _on_start_button_pressed() -> void:
@@ -168,7 +181,7 @@ func _on_reset_button_pressed() -> void:
 	update_controller()
 
 func _on_step_button_pressed() -> void:
-	machine_node.tick()
+	machine_node.tick(true)
 
 func _on_instructions_per_tick_slider_value_changed(value: float) -> void:
 	machine_node.instructions_per_second = roundi(value)
