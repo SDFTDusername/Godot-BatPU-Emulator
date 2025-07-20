@@ -1,6 +1,6 @@
 extends Button
 
-@onready var parent: VBoxContainer = $"../../../../../.."
+@onready var emulator: Emulator = $"../../../../../../../../.."
 
 @export var action_name: StringName
 
@@ -8,11 +8,19 @@ func _ready() -> void:
 	button_down.connect(button_down_signal)
 	button_up.connect(button_up_signal)
 
+func get_event(key_pressed: bool) -> InputEventKey:
+	var events := InputMap.action_get_events(action_name)
+	
+	var event := events[0] as InputEventKey
+	event.pressed = key_pressed
+	
+	return event
+
 func button_down_signal() -> void:
-	Input.action_press(action_name)
+	emulator._unhandled_input(get_event(true))
 
 func button_up_signal() -> void:
-	Input.action_release(action_name)
+	emulator._unhandled_input(get_event(false))
 
 #func _unhandled_input(event: InputEvent) -> void:
 #	if event is InputEventKey:
