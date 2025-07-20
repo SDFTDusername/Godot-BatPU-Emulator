@@ -120,8 +120,8 @@ func update_flags() -> void:
 	if not machine_node.is_flags_updated():
 		return
 	
-	zero_value.text = var_to_str(machine_node.get_zero_flag())
-	carry_value.text = var_to_str(machine_node.get_carry_flag())
+	zero_value.text = str(machine_node.get_zero_flag())
+	carry_value.text = str(machine_node.get_carry_flag())
 	
 	machine_node.disable_flags_updated()
 
