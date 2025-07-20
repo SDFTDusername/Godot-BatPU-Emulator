@@ -5,6 +5,8 @@ extends PanelContainer
 @onready var title_label: Label = $MarginContainer/VBoxContainer/TitleLabel
 @onready var code_edit: CodeEdit = $MarginContainer/VBoxContainer/CodeEdit
 
+@onready var assemble_btn: Button = $MarginContainer/VBoxContainer/HBoxContainer/Assemble
+
 @onready var save_btn: Button = $MarginContainer/VBoxContainer/HBoxContainer2/Save
 @onready var save_as_btn: Button = $MarginContainer/VBoxContainer/HBoxContainer2/SaveAs
 
@@ -23,6 +25,7 @@ var file_name := "Untitled"
 
 var file_exists := false
 var file_modified := false
+var file_assembled := true
 
 var is_machine_code := false
 var instructions: InstructionArray = null
@@ -45,6 +48,8 @@ func update_title() -> void:
 		title_label.text = file_name
 
 func update_buttons() -> void:
+	assemble_btn.disabled = file_assembled
+	
 	save_btn.disabled = not file_modified or is_machine_code
 	save_as_btn.disabled = not file_modified and not file_exists
 
@@ -58,6 +63,8 @@ func files_dropped_signal(files: PackedStringArray) -> void:
 
 func _on_code_edit_text_changed() -> void:
 	file_modified = true
+	file_assembled = false
+	
 	update_all()
 
 func _on_new_pressed() -> void:
@@ -124,6 +131,7 @@ func _on_open_file_dialog_file_selected(path: String) -> void:
 		
 	file_exists = true
 	file_modified = false
+	file_assembled = false
 	
 	update_all()
 	_on_assemble_pressed()
@@ -153,6 +161,7 @@ func _on_save_file_dialog_file_selected(path: String) -> void:
 	
 	file_exists = true
 	file_modified = false
+	file_assembled = false
 	
 	is_machine_code = false
 	
@@ -172,6 +181,7 @@ func _on_new_dialog_confirmed() -> void:
 	
 	file_exists = false
 	file_modified = false
+	file_assembled = false
 	
 	is_machine_code = false
 	
@@ -194,6 +204,9 @@ func _on_assemble_pressed() -> void:
 		emulator.load_instructions(assembled_instructions)
 	
 	emulator.reset()
+	
+	file_assembled = true
+	update_all()
 
 func _on_okay_button_pressed() -> void:
 	error_container.hide()
