@@ -67,7 +67,7 @@ func _on_open_file_dialog_file_selected(path: String) -> void:
 	file_path = path
 	file_name = file_path.get_file()
 	
-	var file = FileAccess.open(file_path, FileAccess.READ)
+	var file := FileAccess.open(file_path, FileAccess.READ)
 	code_edit.text = file.get_as_text()
 	file.close()
 		
@@ -77,7 +77,7 @@ func _on_open_file_dialog_file_selected(path: String) -> void:
 	update_all()
 
 func _on_save_pressed() -> void:
-	var file = FileAccess.open(file_path, FileAccess.WRITE)
+	var file := FileAccess.open(file_path, FileAccess.WRITE)
 	file.store_string(code_edit.text)
 	file.close()
 	
@@ -88,7 +88,7 @@ func _on_save_file_dialog_file_selected(path: String) -> void:
 	file_path = path
 	file_name = file_path.get_file()
 	
-	var file = FileAccess.open(file_path, FileAccess.WRITE)
+	var file := FileAccess.open(file_path, FileAccess.WRITE)
 	file.store_string(code_edit.text)
 	file.close()
 		

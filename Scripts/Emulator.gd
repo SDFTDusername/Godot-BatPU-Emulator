@@ -1,4 +1,5 @@
 extends Control
+class_name Emulator
 
 @onready var machine_node: MachineNode = $MachineNode
 
@@ -125,11 +126,11 @@ func update_registers() -> void:
 	if not machine_node.is_registers_updated():
 		return
 	
-	var registers_text = ""
-	var registers = machine_node.get_registers()
+	var registers_text := ""
+	var registers := machine_node.get_registers()
 	
 	for i in range(len(registers)):
-		var register = registers[i]
+		var register := registers[i]
 		registers_text += "r%-3s [color=ffffff4f]%03d[/color]" % ["%d:" % i, register]
 		if i % 3 < 2:
 			registers_text += "  "
@@ -146,11 +147,11 @@ func update_memory() -> void:
 	if not machine_node.is_memory_updated():
 		return
 	
-	var memory_text = ""
-	var memory = machine_node.get_memory()
+	var memory_text := ""
+	var memory := machine_node.get_memory()
 	
 	for i in range(len(memory)):
-		var value = memory[i]
+		var value := memory[i]
 		memory_text += "%-4s [color=ffffff4f]%03d[/color]" % ["%d:" % i, value]
 		if i % 3 < 2:
 			memory_text += "  "
