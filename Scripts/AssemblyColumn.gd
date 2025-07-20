@@ -186,6 +186,7 @@ func _on_new_dialog_confirmed() -> void:
 	is_machine_code = false
 	
 	update_all()
+	emulator.reset()
 
 func _on_open_dialog_confirmed() -> void:
 	if not file_dropped.is_empty():
