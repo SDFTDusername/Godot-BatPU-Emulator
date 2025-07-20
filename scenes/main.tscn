@@ -451,7 +451,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 focus_mode = 0
 min_value = 1.0
-max_value = 100000.0
+max_value = 1e+06
 value = 100.0
 exp_edit = true
 
@@ -459,7 +459,7 @@ exp_edit = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 min_value = 1.0
-max_value = 100000.0
+max_value = 1e+06
 value = 100.0
 rounded = true
 script = ExtResource("4_v1gob")
