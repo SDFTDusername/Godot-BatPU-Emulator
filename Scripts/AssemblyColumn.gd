@@ -77,7 +77,20 @@ func _on_open_pressed() -> void:
 
 func read_file(file: FileAccess) -> void:
 	if is_machine_code:
-		instructions = emulator.binary_to_instructions(file.get_buffer(file.get_length()))
+		var bytes: PackedByteArray = []
+		
+		while file.get_position() < file.get_length():
+			var line := file.get_line().strip_edges()
+			if line.is_empty():
+				continue
+			
+			var byte_count := line.length() / 8
+			var binary := line.bin_to_int()
+			
+			for i in range(byte_count):
+				bytes.append((binary >> ((byte_count - i - 1) * 8)) & 0xFF)
+		
+		instructions = emulator.binary_to_instructions(bytes)
 		if show_errors(instructions):
 			return
 		
