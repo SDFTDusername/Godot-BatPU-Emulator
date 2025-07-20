@@ -178,6 +178,9 @@ func binary_to_instructions(binary: PackedByteArray) -> InstructionArray:
 func load_instructions(instructions: InstructionArray) -> void:
 	machine_node.load_instructions(instructions)
 
+func instructions_to_text(instructions: InstructionArray) -> String:
+	return MachineNode.instructions_to_text(instructions)
+
 func _on_machine_node_last_ticked() -> void:
 	update_all()
 

@@ -25,6 +25,7 @@ var file_exists := false
 var file_modified := false
 
 var is_machine_code := false
+var instructions: InstructionArray = null
 
 var file_dropped := ""
 
@@ -35,6 +36,7 @@ func _ready() -> void:
 func update_all() -> void:
 	update_title()
 	update_buttons()
+	code_edit.editable = not is_machine_code
 
 func update_title() -> void:
 	if file_modified:
@@ -43,7 +45,7 @@ func update_title() -> void:
 		title_label.text = file_name
 
 func update_buttons() -> void:
-	save_btn.disabled = not file_modified
+	save_btn.disabled = not file_modified or is_machine_code
 	save_as_btn.disabled = not file_modified and not file_exists
 
 func files_dropped_signal(files: PackedStringArray) -> void:
@@ -73,18 +75,42 @@ func _on_open_pressed() -> void:
 	else:
 		_on_open_dialog_confirmed()
 
+func read_file(file: FileAccess) -> void:
+	if is_machine_code:
+		instructions = emulator.binary_to_instructions(file.get_buffer(file.get_length()))
+		if show_errors(instructions):
+			return
+		
+		code_edit.text = emulator.instructions_to_text(instructions)
+	else:
+		instructions = null
+		code_edit.text = file.get_as_text()
+
+func show_errors(instruction_array: InstructionArray) -> bool:
+	if instruction_array.has_errors():
+		var errors := instruction_array.get_errors()
+		
+		error_title_label.text = "%d error%s" % [errors.size(), "" if errors.size() == 1 else "s"]
+		errors_label.text = "\n".join(errors)
+		
+		error_container.show()
+		return true
+	
+	error_container.hide()
+	return false
+
 func _on_open_file_dialog_file_selected(path: String) -> void:
 	file_path = path
 	file_name = file_path.get_file()
 	
+	is_machine_code = path.get_file().ends_with(".mc")
+	
 	var file := FileAccess.open(file_path, FileAccess.READ)
-	code_edit.text = file.get_as_text()
+	read_file(file)
 	file.close()
 		
 	file_exists = true
 	file_modified = false
-	
-	is_machine_code = path.get_file().ends_with(".mc")
 	
 	update_all()
 	_on_assemble_pressed()
@@ -110,13 +136,17 @@ func _on_save_file_dialog_file_selected(path: String) -> void:
 	file.store_string(code_edit.text)
 	file.close()
 	
+	var previous_file_modified := file_modified
+	
 	file_exists = true
 	file_modified = false
 	
-	is_machine_code = path.get_file().ends_with(".mc")
+	is_machine_code = false
 	
 	update_all()
-	_on_assemble_pressed()
+	
+	if previous_file_modified:
+		_on_assemble_pressed()
 
 func _on_save_as_pressed() -> void:
 	save_file_dialog.show()
@@ -130,6 +160,8 @@ func _on_new_dialog_confirmed() -> void:
 	file_exists = false
 	file_modified = false
 	
+	is_machine_code = false
+	
 	update_all()
 
 func _on_open_dialog_confirmed() -> void:
@@ -140,22 +172,15 @@ func _on_open_dialog_confirmed() -> void:
 
 func _on_assemble_pressed() -> void:
 	if is_machine_code:
-		pass
+		emulator.load_instructions(instructions)
 	else:
-		var instructions := emulator.assemble_text(code_edit.text)
-		if instructions.has_errors():
-			var errors := instructions.get_errors()
-			
-			error_title_label.text = "%d error%s" % [errors.size(), "" if errors.size() == 1 else "s"]
-			errors_label.text = "\n".join(errors)
-			
-			error_container.show()
+		var assembled_instructions := emulator.assemble_text(code_edit.text)
+		if show_errors(assembled_instructions):
 			return
 		
-		error_container.hide()
-		
-		emulator.load_instructions(instructions)
-		emulator.reset()
+		emulator.load_instructions(assembled_instructions)
+	
+	emulator.reset()
 
 func _on_okay_button_pressed() -> void:
 	error_container.hide()

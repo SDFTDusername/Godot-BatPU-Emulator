@@ -1,14 +1,15 @@
 use crate::instruction_array::InstructionArray;
 use batpu_assembler::assembler::Assembler;
 use batpu_assembler::assembler_config::AssemblerConfig;
+use batpu_assembly::components::condition::Condition;
+use batpu_assembly::components::location::Location;
 use batpu_assembly::helper::binary_to_instructions;
 use batpu_assembly::instruction::Instruction;
 use batpu_assembly::InstructionVec;
 use batpu_emulator::machine::{Machine, Word};
 use byteorder::{BigEndian, ReadBytesExt};
-use godot::classes::file_access::ModeFlags;
 use godot::classes::image::Format;
-use godot::classes::{FileAccess, Image, ImageTexture, Node, TextureRect, Time};
+use godot::classes::{Image, ImageTexture, Node, TextureRect, Time};
 use godot::prelude::*;
 
 const OFF_COLOR: Color = Color::from_rgba8(158, 92, 56, 255);
@@ -206,19 +207,100 @@ impl MachineNode {
     }
 
     #[func]
-    fn load_mc_file(&mut self, path: GString) {
-        let mut file = FileAccess::open(&path.to_string(), ModeFlags::READ).unwrap();
-        file.set_big_endian(true);
-
-        let mut instructions = InstructionVec::with_capacity(file.get_length() as usize / 2);
-
-        while !file.eof_reached() {
-            let binary = file.get_16();
-            let instruction = Instruction::instruction(binary).unwrap();
-            instructions.push(instruction);
+    fn instructions_to_text(instructions: Gd<InstructionArray>) -> GString {
+        let instructions = instructions.bind();
+        if instructions.instructions.is_none() {
+            return "".to_godot();
         }
 
-        self.machine.set_instructions(instructions);
+        let instructions = instructions.instructions.as_ref().unwrap();
+
+        let location_to_string = |location: &Location| -> String {
+            match location {
+                Location::Address(address) => {
+                    address.address().to_string()
+                },
+                Location::Offset(offset) => {
+                    let offset = offset.offset();
+                    format!(
+                        "{}{}",
+                        if offset < 0 { "" } else { "+" },
+                        offset
+                    )
+                },
+                Location::Label(label) => {
+                    label.clone()
+                }
+            }
+        };
+
+        let lines = instructions.iter()
+            .map(|instruction| {
+                let mut result = String::new();
+
+                match instruction {
+                    Instruction::NoOperation => {
+                        result += "nop";
+                    },
+                    Instruction::Halt => {
+                        result += "hlt";
+                    },
+                    Instruction::Addition(a, b, c) => {
+                        result += &format!("add r{} r{} r{}", a.register(), b.register(), c.register());
+                    },
+                    Instruction::Subtraction(a, b, c) => {
+                        result += &format!("sub r{} r{} r{}", a.register(), b.register(), c.register());
+                    },
+                    Instruction::BitwiseNOR(a, b, c) => {
+                        result += &format!("nor r{} r{} r{}", a.register(), b.register(), c.register());
+                    },
+                    Instruction::BitwiseAND(a, b, c) => {
+                        result += &format!("and r{} r{} r{}", a.register(), b.register(), c.register());
+                    },
+                    Instruction::BitwiseXOR(a, b, c) => {
+                        result += &format!("xor r{} r{} r{}", a.register(), b.register(), c.register());
+                    },
+                    Instruction::RightShift(a, c) => {
+                        result += &format!("xor r{} r{}", a.register(), c.register());
+                    },
+                    Instruction::LoadImmediate(a, immediate) => {
+                        result += &format!("ldi r{} {}", a.register(), immediate.immediate());
+                    },
+                    Instruction::AddImmediate(a, immediate) => {
+                        result += &format!("adi r{} {}", a.register(), immediate.immediate());
+                    },
+                    Instruction::Jump(location) => {
+                        result += &format!("jmp {}", location_to_string(location));
+                    },
+                    Instruction::Branch(condition, location) => {
+                        let condition = match condition {
+                            Condition::Zero     => "zero",
+                            Condition::NotZero  => "notzero",
+                            Condition::Carry    => "carry",
+                            Condition::NotCarry => "notcarry"
+                        };
+
+                        result += &format!("brh {} {}", condition, location_to_string(location));
+                    },
+                    Instruction::Call(location) => {
+                        result += &format!("cal {}", location_to_string(location));
+                    },
+                    Instruction::Return => {
+                        result += "ret";
+                    },
+                    Instruction::MemoryLoad(a, b, offset) => {
+                        result += &format!("lod r{} r{} {}", a.register(), b.register(), offset.offset());
+                    },
+                    Instruction::MemoryStore(a, b, offset) => {
+                        result += &format!("str r{} r{} {}", a.register(), b.register(), offset.offset());
+                    }
+                }
+
+                result
+            })
+            .collect::<Vec<String>>();
+
+        lines.join("\n").to_godot()
     }
 
     #[func]

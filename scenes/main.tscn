@@ -679,6 +679,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 2
 mouse_default_cursor_shape = 1
 selection_enabled = true
 
@@ -691,13 +692,13 @@ title = "Open a File"
 ok_button_text = "Open"
 file_mode = 0
 access = 2
-filters = PackedStringArray("*.asm;Assembly Files;text/plain", "*.mc;BatPU Machine Code Files;application/octet-stream")
+filters = PackedStringArray("*.asm;BatPU Assembly Files;text/plain", "*.mc;BatPU Machine Code Files;application/octet-stream")
 use_native_dialog = true
 
 [node name="SaveFileDialog" type="FileDialog" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn"]
 auto_translate_mode = 1
 access = 2
-filters = PackedStringArray("*.asm;Assembly Files;text/plain")
+filters = PackedStringArray("*.asm;BatPU Assembly Files;text/plain")
 use_native_dialog = true
 
 [node name="NewDialog" type="ConfirmationDialog" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn"]
