@@ -22,7 +22,7 @@ class_name Emulator
 @onready var update_registers_checkbox: CheckBox = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/SettingsContainer/MarginContainer/HBoxContainer/UpdateRegisters
 @onready var update_memory_checkbox: CheckBox = $MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/SettingsContainer/MarginContainer/HBoxContainer/UpdateMemory
 
-var reset := true
+var resetted := true
 
 var start_pressed := false
 var select_pressed := false
@@ -41,7 +41,6 @@ func _ready() -> void:
 	update_controller()
 	
 	machine_node.update_screen(true)
-	machine_node.load_mc_file("movement.batpu")
 
 func _process(_delta: float) -> void:
 	update_controller()
@@ -78,6 +77,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed("left"): left_pressed = true
 		if event.is_action_released("left"): left_pressed = false
 
+func reset() -> void:
+	machine_node.reset()
+	resetted = true
+	
+	update_start_button()
+	update_all()
+	update_controller()
 
 func update_controller() -> void:
 	machine_node.set_controller_value(7, start_pressed)
@@ -101,7 +107,7 @@ func update_start_button() -> void:
 	if machine_node.is_running():
 		start_button.text = "Pause"
 	else:
-		if reset:
+		if resetted:
 			start_button.text = "Start"
 		else:
 			start_button.text = "Resume"
@@ -132,10 +138,11 @@ func update_registers() -> void:
 	for i in range(len(registers)):
 		var register := registers[i]
 		registers_text += "r%-3s [color=ffffff4f]%03d[/color]" % ["%d:" % i, register]
-		if i % 3 < 2:
-			registers_text += "  "
-		else:
-			registers_text += "\n"
+		if i < len(registers) - 1:
+			if i % 3 < 2:
+				registers_text += "  "
+			else:
+				registers_text += "\n"
 	
 	registers_label.text = registers_text
 	machine_node.disable_registers_updated()
@@ -153,13 +160,23 @@ func update_memory() -> void:
 	for i in range(len(memory)):
 		var value := memory[i]
 		memory_text += "%-4s [color=ffffff4f]%03d[/color]" % ["%d:" % i, value]
-		if i % 3 < 2:
-			memory_text += "  "
-		else:
-			memory_text += "\n"
+		if i < len(memory) - 1:
+			if i % 3 < 2:
+				memory_text += "  "
+			else:
+				memory_text += "\n"
 	
 	memory_label.text = memory_text
-	self.machine_node.disable_memory_updated()
+	machine_node.disable_memory_updated()
+
+func assemble_text(text: String) -> InstructionArray:
+	return MachineNode.assemble_text(text)
+
+func binary_to_instructions(binary: PackedByteArray) -> InstructionArray:
+	return MachineNode.binary_to_instructions(binary)
+
+func load_instructions(instructions: InstructionArray) -> void:
+	machine_node.load_instructions(instructions)
 
 func _on_machine_node_last_ticked() -> void:
 	update_all()
@@ -169,17 +186,12 @@ func _on_start_button_pressed() -> void:
 		machine_node.stop()
 	else:
 		machine_node.start()
-		reset = false
+		resetted = false
 	
 	update_start_button()
 
 func _on_reset_button_pressed() -> void:
-	machine_node.reset()
-	reset = true
-	
-	update_start_button()
-	update_all()
-	update_controller()
+	reset()
 
 func _on_step_button_pressed() -> void:
 	machine_node.tick(true)

@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://fsuleckmramo"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://fsuleckmramo"]
 
-[ext_resource type="StyleBox" uid="uid://bqayi4es415hg" path="res://PanelTheme.tres" id="1_yd3fu"]
+[ext_resource type="StyleBox" uid="uid://ch8p1bsg3ier3" path="res://Theme/PanelTheme.tres" id="1_io6mi"]
+[ext_resource type="StyleBox" uid="uid://bqayi4es415hg" path="res://Theme/PanelContainerTheme.tres" id="2_2ffa5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4jqe"]
 content_margin_left = 8.0
@@ -27,6 +28,8 @@ corner_detail = 5
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_yd3fu"]
 color = Color(0.216821, 0.247671, 0.290864, 1)
 thickness = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_io6mi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yd3fu"]
 content_margin_left = 10.0
@@ -74,8 +77,11 @@ MarginContainer/constants/margin_bottom = 5
 MarginContainer/constants/margin_left = 5
 MarginContainer/constants/margin_right = 5
 MarginContainer/constants/margin_top = 5
-PanelContainer/styles/panel = ExtResource("1_yd3fu")
-TabContainer/styles/panel = ExtResource("1_yd3fu")
+Panel/styles/panel = ExtResource("1_io6mi")
+PanelContainer/styles/panel = ExtResource("2_2ffa5")
+RichTextLabel/colors/selection_color = Color(0.29, 0.4675, 1, 0.560784)
+RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_io6mi")
+TabContainer/styles/panel = ExtResource("2_2ffa5")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_yd3fu")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_23v3e")
 VSeparator/styles/separator = SubResource("StyleBoxLine_23v3e")

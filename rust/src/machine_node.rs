@@ -1,6 +1,11 @@
+use crate::instruction_array::InstructionArray;
+use batpu_assembler::assembler::Assembler;
+use batpu_assembler::assembler_config::AssemblerConfig;
+use batpu_assembly::helper::binary_to_instructions;
 use batpu_assembly::instruction::Instruction;
 use batpu_assembly::InstructionVec;
-use batpu_emulator::machine::Machine;
+use batpu_emulator::machine::{Machine, Word};
+use byteorder::{BigEndian, ReadBytesExt};
 use godot::classes::file_access::ModeFlags;
 use godot::classes::image::Format;
 use godot::classes::{FileAccess, Image, ImageTexture, Node, TextureRect, Time};
@@ -11,7 +16,7 @@ const ON_COLOR: Color = Color::from_rgba8(242, 176, 111, 255);
 
 #[derive(GodotClass)]
 #[class(base=Node)]
-struct MachineNode {
+pub struct MachineNode {
     base: Base<Node>,
     machine: Machine,
 
@@ -117,6 +122,87 @@ impl MachineNode {
     fn stop(&mut self) {
         self.run = false;
         self.tick_instantly = false;
+    }
+
+    #[func]
+    fn assemble_text(text: GString) -> Gd<InstructionArray> {
+        let config = AssemblerConfig::default();
+        let mut assembler = Assembler::new(config);
+
+        let result = assembler.parse(&text.to_string());
+        if result.is_err() {
+            return InstructionArray::new_errors(result.err().unwrap());
+        }
+
+        let result = assembler.assemble();
+        match result {
+            Ok(binary) => {
+                let instructions = binary_to_instructions(&binary);
+                match instructions {
+                    Ok(instructions) => {
+                        InstructionArray::new_instructions(instructions)
+                    },
+                    Err(errors) => {
+                        let errors = errors.iter()
+                            .map(|error| error.clone().into())
+                            .collect();
+
+                        InstructionArray::new_errors(errors)
+                    }
+                }
+            },
+            Err(errors) => {
+                let errors = errors.iter()
+                    .map(|error| error.clone().into())
+                    .collect();
+
+                InstructionArray::new_errors(errors)
+            }
+        }
+    }
+
+    #[func]
+    fn binary_to_instructions(binary: PackedByteArray) -> Gd<InstructionArray> {
+        let mut slice = &binary.as_slice()[..];
+
+        let mut instructions = InstructionVec::with_capacity(binary.len() / size_of::<Word>());
+        let mut errors = Vec::new();
+
+        'outer: loop {
+            let binary = slice.read_u16::<BigEndian>();
+            match binary {
+                Ok(binary) => {
+                    let instruction = Instruction::instruction(binary);
+                    match instruction {
+                        Ok(instruction) => {
+                            instructions.push(instruction);
+                        },
+                        Err(error) => {
+                            errors.push(error.into());
+                        }
+                    }
+                },
+                Err(_) => {
+                    break 'outer;
+                }
+            }
+        }
+
+        if !errors.is_empty() {
+            return InstructionArray::new_errors(errors);
+        }
+
+        InstructionArray::new_instructions(instructions)
+    }
+
+    #[func]
+    fn load_instructions(&mut self, binary: Gd<InstructionArray>) {
+        let binary = binary.bind();
+        if binary.instructions.is_none() {
+            return;
+        }
+        
+        self.machine.set_instructions(binary.instructions.clone().unwrap());
     }
 
     #[func]

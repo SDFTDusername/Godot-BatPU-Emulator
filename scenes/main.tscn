@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d0pmv6pxy3ax2"]
+[gd_scene load_steps=25 format=3 uid="uid://d0pmv6pxy3ax2"]
 
 [ext_resource type="Script" uid="uid://dx0rlg3ee2lgh" path="res://Scripts/Emulator.gd" id="1_idj7w"]
 [ext_resource type="Texture2D" uid="uid://dk44tobqhpg87" path="res://Textures/ScreenPlaceholder.png" id="1_r150o"]
@@ -51,6 +51,14 @@ keycode = 79
 [sub_resource type="Shortcut" id="Shortcut_vy5pj"]
 events = [SubResource("InputEventKey_50glp")]
 
+[sub_resource type="InputEventKey" id="InputEventKey_grg3l"]
+device = -1
+ctrl_pressed = true
+keycode = 69
+
+[sub_resource type="Shortcut" id="Shortcut_frkhe"]
+events = [SubResource("InputEventKey_grg3l")]
+
 [sub_resource type="InputEventKey" id="InputEventKey_bmxlf"]
 device = -1
 ctrl_pressed = true
@@ -67,6 +75,9 @@ keycode = 83
 
 [sub_resource type="Shortcut" id="Shortcut_v1gob"]
 events = [SubResource("InputEventKey_pbw6q")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v1gob"]
+font_size = 24
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -505,9 +516,12 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
+focus_mode = 2
+mouse_default_cursor_shape = 1
 bbcode_enabled = true
 fit_content = true
 autowrap_mode = 0
+selection_enabled = true
 
 [node name="MemoryContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
 layout_mode = 2
@@ -524,9 +538,12 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
+focus_mode = 2
+mouse_default_cursor_shape = 1
 bbcode_enabled = true
 fit_content = true
 autowrap_mode = 0
+selection_enabled = true
 
 [node name="SettingsContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn"]
 layout_mode = 2
@@ -582,15 +599,24 @@ focus_mode = 0
 shortcut = SubResource("Shortcut_vy5pj")
 text = "Open"
 
-[node name="Save" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Assemble" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
-disabled = true
+shortcut = SubResource("Shortcut_frkhe")
+text = "Assemble"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Save" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
 shortcut = SubResource("Shortcut_4kpch")
 text = "Save"
 
-[node name="SaveAs" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SaveAs" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
@@ -614,12 +640,58 @@ gutters_draw_line_numbers = true
 delimiter_strings = Array[String]([])
 script = ExtResource("4_rgh2o")
 
+[node name="ErrorContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/ErrorContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/ErrorContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/ErrorContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/ErrorContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_v1gob")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/ErrorContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Errors" type="RichTextLabel" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/ErrorContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_default_cursor_shape = 1
+selection_enabled = true
+
+[node name="OkayButton" type="Button" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/ErrorContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Okay"
+
 [node name="OpenFileDialog" type="FileDialog" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn"]
 title = "Open a File"
 ok_button_text = "Open"
 file_mode = 0
 access = 2
-filters = PackedStringArray("*.asm;Assembly Files;text/plain", "*.batpu;BatPU Program Files;application/octet-stream Files")
+filters = PackedStringArray("*.asm;Assembly Files;text/plain", "*.mc;BatPU Machine Code Files;application/octet-stream")
 use_native_dialog = true
 
 [node name="SaveFileDialog" type="FileDialog" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn"]
@@ -657,9 +729,11 @@ screen_rect = NodePath("../MarginContainer/HSplitContainer/DisplayColumn/Display
 [connection signal="value_changed" from="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/IPSContainer/MarginContainer/VBoxContainer/HBoxContainer2/SpinBox" to="." method="_on_spin_box_value_changed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer/New" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_new_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer/Open" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_open_pressed"]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer/Save" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_save_pressed"]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer/SaveAs" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_save_as_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer/Assemble" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_assemble_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer2/Save" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_save_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/HBoxContainer2/SaveAs" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_save_as_pressed"]
 [connection signal="text_changed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/MarginContainer/VBoxContainer/CodeEdit" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_code_edit_text_changed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/ErrorContainer/Panel/MarginContainer/VBoxContainer/OkayButton" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_okay_button_pressed"]
 [connection signal="file_selected" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/OpenFileDialog" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_open_file_dialog_file_selected"]
 [connection signal="file_selected" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/SaveFileDialog" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_save_file_dialog_file_selected"]
 [connection signal="confirmed" from="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn/NewDialog" to="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn" method="_on_new_dialog_confirmed"]

@@ -1,4 +1,5 @@
 mod machine_node;
+mod instruction_array;
 
 use godot::prelude::*;
 

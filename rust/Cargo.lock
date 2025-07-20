@@ -12,6 +12,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "batpu-assembler"
+version = "0.0.1"
+source = "git+https://github.com/SDFTDusername/batpu-assembler.git#53247b8a996e0d6fddc49e0d921ba32e4450e187"
+dependencies = [
+ "batpu-assembly",
+]
+
+[[package]]
 name = "batpu-assembly"
 version = "0.0.1"
 source = "git+https://github.com/SDFTDusername/batpu-assembly.git#d9f433c4b9118eb6e4b9368fec0e2dfb00c75cc7"
@@ -20,8 +28,10 @@ source = "git+https://github.com/SDFTDusername/batpu-assembly.git#d9f433c4b9118e
 name = "batpu-emulator"
 version = "0.0.1"
 dependencies = [
+ "batpu-assembler",
  "batpu-assembly",
  "batpu-emulator 0.0.1 (git+https://github.com/SDFTDusername/batpu-emulator.git)",
+ "byteorder",
  "godot",
 ]
 
@@ -39,6 +49,12 @@ name = "bitflags"
 version = "2.9.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1b8e56985ec62d17e9c1001dc89c88ecd7dc08e47eba5ec7c29c7b5eeecde967"
+
+[[package]]
+name = "byteorder"
+version = "1.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1fd0f2584146f6f2ef48085050886acf353beff7305ebd1ae69500e27c67f64b"
 
 [[package]]
 name = "cfg-if"
