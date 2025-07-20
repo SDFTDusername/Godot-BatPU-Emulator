@@ -328,16 +328,16 @@ impl MachineNode {
 
             for x in 0..width {
                 for y in 0..height {
-                    let (byte, bit) = screen.get_index(x, height - y - 1);
+                    let (byte, bit) = screen.get_index(x, y);
 
-                    let pixel = (image[byte] >> bit) == 1;
+                    let pixel = ((image[byte] >> bit) & 1) != 0;
                     let color = if pixel {
                         ON_COLOR
                     } else {
                         OFF_COLOR
                     };
 
-                    rgb_image.set_pixel(x as i32, y as i32, color);
+                    rgb_image.set_pixel(x as i32, (height - y - 1) as i32, color);
                 }
             }
 
