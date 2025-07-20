@@ -197,13 +197,13 @@ impl MachineNode {
     }
 
     #[func]
-    fn load_instructions(&mut self, binary: Gd<InstructionArray>) {
-        let binary = binary.bind();
-        if binary.instructions.is_none() {
+    fn load_instructions(&mut self, instructions: Gd<InstructionArray>) {
+        let instructions = instructions.bind();
+        if instructions.instructions.is_none() {
             return;
         }
-        
-        self.machine.set_instructions(binary.instructions.clone().unwrap());
+
+        self.machine.set_instructions(instructions.instructions.clone().unwrap());
     }
 
     #[func]
