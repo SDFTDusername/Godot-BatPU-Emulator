@@ -137,7 +137,7 @@ func update_registers() -> void:
 	
 	for i in range(len(registers)):
 		var register := registers[i]
-		registers_text += "r%-3s [color=ffffff4f]%03d[/color]" % ["%d:" % i, register]
+		registers_text += "r%-3s [color=ffffff4f]%3d[/color]" % ["%d:" % i, register]
 		if i < len(registers) - 1:
 			if i % 3 < 2:
 				registers_text += "  "
@@ -159,7 +159,7 @@ func update_memory() -> void:
 	
 	for i in range(len(memory)):
 		var value := memory[i]
-		memory_text += "%-4s [color=ffffff4f]%03d[/color]" % ["%d:" % i, value]
+		memory_text += "%-4s [color=ffffff4f]%3d[/color]" % ["%d:" % i, value]
 		if i < len(memory) - 1:
 			if i % 3 < 2:
 				memory_text += "  "
