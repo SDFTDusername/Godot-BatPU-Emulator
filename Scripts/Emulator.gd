@@ -113,7 +113,7 @@ func update_start_button() -> void:
 			start_button.text = "Resume"
 
 func update_info() -> void:
-	pc_value.text = "%04d" % machine_node.get_program_counter()
+	pc_value.text = str(machine_node.get_program_counter())
 	speed_value.text = "%d%%" % machine_node.speed_percentage
 
 func update_flags() -> void:

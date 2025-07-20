@@ -380,9 +380,11 @@ text = "Program Counter:"
 vertical_alignment = 1
 
 [node name="PCValue" type="Label" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(39, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.309804)
-text = "0000"
+text = "0"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/ControlColumn/ControlContainer/MarginContainer/VBoxContainer"]
