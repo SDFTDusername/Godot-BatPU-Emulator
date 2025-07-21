@@ -577,6 +577,15 @@ text = "Follow Assembly"
 [node name="AssemblyColumn" type="PanelContainer" parent="MarginContainer/HSplitContainer/HSplitContainer"]
 layout_mode = 2
 script = ExtResource("4_pbw6q")
+opcodes = PackedStringArray("nop", "hlt", "add", "sub", "nor", "and", "xor", "rsh", "ldi", "adi", "jmp", "brh", "cal", "ret", "lod", "str", "cmp", "mov", "lsh", "inc", "dec", "not", "neg")
+conditions = PackedStringArray("zero", "notzero", "carry", "notcarry")
+comment_color = Color(0.462291, 0.462291, 0.46229, 1)
+directive_color = Color(0.462745, 0.462745, 0.462745, 1)
+opcode_color = Color(0.498039, 0.992157, 0.819608, 1)
+register_color = Color(0.670588, 0.784314, 1, 1)
+number_color = Color(1, 0.360784, 0.32549, 1)
+string_color = Color(1, 0.360784, 0.32549, 1)
+condition_color = Color(0.911635, 0.60823, 0.458849, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn"]
 layout_mode = 2
@@ -638,8 +647,16 @@ caret_blink = true
 highlight_all_occurrences = true
 highlight_current_line = true
 draw_tabs = true
+line_folding = true
 gutters_draw_line_numbers = true
+gutters_draw_fold_gutter = true
 delimiter_strings = Array[String]([])
+indent_size = 2
+auto_brace_completion_enabled = true
+auto_brace_completion_highlight_matching = true
+auto_brace_completion_pairs = {
+"'": "'"
+}
 script = ExtResource("4_rgh2o")
 
 [node name="ErrorContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/HSplitContainer/AssemblyColumn"]

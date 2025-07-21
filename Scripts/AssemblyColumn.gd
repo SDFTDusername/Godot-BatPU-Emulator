@@ -20,6 +20,17 @@ extends PanelContainer
 @onready var new_dialog: ConfirmationDialog = $NewDialog
 @onready var open_dialog: ConfirmationDialog = $OpenDialog
 
+@export var opcodes: PackedStringArray
+@export var conditions: PackedStringArray
+
+@export var comment_color: Color
+@export var directive_color: Color
+@export var opcode_color: Color
+@export var register_color: Color
+@export var number_color: Color
+@export var string_color: Color
+@export var condition_color: Color
+
 var file_path := ""
 var file_name := "Untitled"
 
@@ -33,8 +44,32 @@ var instructions: InstructionArray = null
 var file_dropped := ""
 
 func _ready() -> void:
+	set_syntax_highlighter()
 	get_window().files_dropped.connect(files_dropped_signal)
 	update_all()
+
+func set_syntax_highlighter() -> void:
+	var code_highlighter := CodeHighlighter.new()
+	
+	code_highlighter.number_color = number_color
+	code_highlighter.symbol_color = Color.WHITE
+	code_highlighter.function_color = Color.WHITE
+	code_highlighter.member_variable_color = Color.WHITE
+	
+	code_highlighter.add_color_region("'", "'", string_color, false)
+	code_highlighter.add_color_region("//", "", comment_color, true)
+	code_highlighter.add_color_region("#", "", directive_color, true)
+	
+	for i in range(16):
+		code_highlighter.add_keyword_color("r%d" % i, register_color)
+	
+	for opcode in opcodes:
+		code_highlighter.add_keyword_color(opcode, opcode_color)
+	
+	for condition in conditions:
+		code_highlighter.add_keyword_color(condition, condition_color)
+	
+	code_edit.syntax_highlighter = code_highlighter
 
 func update_all() -> void:
 	update_title()
