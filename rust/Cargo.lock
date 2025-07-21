@@ -14,7 +14,7 @@ dependencies = [
 [[package]]
 name = "batpu-assembler"
 version = "0.0.1"
-source = "git+https://github.com/SDFTDusername/batpu-assembler.git#ae83859dff81467bde03813e97fde2a2ea28525d"
+source = "git+https://github.com/SDFTDusername/batpu-assembler.git#b2325642800822efb26c143a54709898b846cc17"
 dependencies = [
  "batpu-assembly",
 ]
@@ -22,7 +22,7 @@ dependencies = [
 [[package]]
 name = "batpu-assembly"
 version = "0.0.1"
-source = "git+https://github.com/SDFTDusername/batpu-assembly.git#d9f433c4b9118eb6e4b9368fec0e2dfb00c75cc7"
+source = "git+https://github.com/SDFTDusername/batpu-assembly.git#4e5f022a07390a11b424b672bb6808088b4b27af"
 
 [[package]]
 name = "batpu-emulator"
@@ -38,7 +38,7 @@ dependencies = [
 [[package]]
 name = "batpu-emulator"
 version = "0.0.1"
-source = "git+https://github.com/SDFTDusername/batpu-emulator.git#d739eca6f754748d1405a9aef804b4dd2d7bf592"
+source = "git+https://github.com/SDFTDusername/batpu-emulator.git#f708dab9b1d852b42ada2fb6da779fd56d700bc0"
 dependencies = [
  "batpu-assembly",
  "rand",
